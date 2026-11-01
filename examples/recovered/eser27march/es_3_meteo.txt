@@ -1,0 +1,8 @@
+Roma 15.5 65.0
+Milano 8.2 88.5
+Napoli 18.1 70.2
+Torino 6.5 82.0
+Palermo 21.3 55.4
+Aosta -2.4 45.0
+Venezia 10.8 92.1
+Cagliari 19.5 60.0

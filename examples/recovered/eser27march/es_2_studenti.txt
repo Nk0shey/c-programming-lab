@@ -1,0 +1,6 @@
+Mario_Rossi 102345 28.50
+Luca_Bianchi 104567 26.00
+Giulia_Verdi 109812 29.80
+Anna_Neri 112233 24.50
+Marco_Gialli 115566 30.00
+Sofia_Russo 118899 28.10

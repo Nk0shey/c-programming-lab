@@ -1,0 +1,2 @@
+s1002 Analisi1 pr002 2
+s1006 BasiDati pr006 5

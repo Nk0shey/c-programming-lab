@@ -2,7 +2,7 @@
 
 University practice in C by [Nikita Kozchenko](https://github.com/Nk0shey), a Computer Engineering student at the University of Catania.
 
-48 standalone programs exploring arrays, linked lists, stacks, queues, binary trees and file-based simulations. This repository documents academic practice and subsequent improvements. It is a learning collection, with varying test coverage across exercises.
+56 standalone programs exploring arrays, linked lists, stacks, queues, binary trees and file-based simulations. This repository documents academic practice and subsequent improvements. It is a learning collection, with varying test coverage across exercises.
 
 ## Highlights
 
@@ -49,7 +49,7 @@ cc -std=c11 exercises/alberi/ricercaAlbero.c -o ricercaAlbero
 
 Exercises using separate implementation files must compile and link those files too; the CMake targets handle this automatically.
 
-All 48 programs were compiled individually on Linux. CMake configuration and the full build have been verified on Linux with GCC 13.3.0.
+All 56 programs were compiled individually on Linux. CMake configuration and the full build have been verified on Linux with GCC 13.3.0.
 
 ## Tests
 
@@ -61,7 +61,7 @@ cmake --build build --parallel 2
 ctest --test-dir build --output-on-failure
 ```
 
-29 functional checks cover data-structure operations, cleanup, FIFO/LIFO ordering, filtering, sorting ties, invalid file input, closed-ticket statistics and exact matrix output. Another 48 entrypoint checks exercise empty, incomplete and malformed console input. Each regression test has an isolated working directory and keeps assertions enabled in Release builds.
+36 functional checks cover data-structure operations, cleanup, FIFO/LIFO ordering, filtering, sorting ties, invalid file input, closed-ticket statistics and exact matrix output. Another 56 entrypoint checks exercise empty, incomplete and malformed console input. An additional end-to-end suite runs all eight recovered programs with synthetic inputs and historical example data. In total, CTest runs 93 checks. Each regression test has an isolated working directory and keeps assertions enabled in Release builds.
 
 Optional memory and undefined-behaviour checks with GCC or Clang:
 
@@ -73,10 +73,11 @@ ctest --test-dir build-sanitize --output-on-failure
 
 Where LeakSanitizer cannot inspect processes (as in the preparation environment), use `ASAN_OPTIONS=detect_leaks=0` before the CTest command. Address and undefined-behaviour checks remain enabled; this does not verify leak freedom.
 
-The optional `python3 tests/run.py` runner runs the 29 functional checks (the 48 entrypoint checks are registered with CTest). Python is needed only for that alternative runner. Use `-DBUILD_TESTING=OFF` to build exercises without the regression executables.
+The optional `python3 tests/run.py` runner runs the 36 functional checks (the 56 entrypoint checks and end-to-end suite are registered with CTest). Python is needed only for that alternative runner. Use `-DBUILD_TESTING=OFF` to build exercises without the regression executables.
 
 ## Navigate
 
+- `exercises/class/`, `exercises/eser8apr/`, `exercises/eser27march/`, `exercises/esercitazione_01_04/`: recovered array, file-processing and recursion exercises.
 - `exercises/hw1/`: array operations and search.
 - `exercises/eser17apr/`: linked lists and library records.
 - `exercises/eser6magg/`, `exercises/eser8magg/`: stack and queue representations.
@@ -93,9 +94,9 @@ The optional `python3 tests/run.py` runner runs the 29 functional checks (the 48
 
 ## Input files and scope
 
-Many programs expect text input files in their current working directory. Original datasets were not included outside IDE-generated build folders. Source comments describe the exercise-specific formats; regression tests create synthetic data for their own checks. Run file-based programs in a temporary directory because some write output files.
+Many programs expect text input files in their current working directory. Original datasets were not included outside IDE-generated build folders in the first upload. Example inputs recovered from the second archive are now available in [examples/recovered](examples/recovered/README.md). Source comments describe the exercise-specific formats; regression tests create synthetic data for their own checks. Run file-based programs in a temporary directory because some write output files.
 
-All 48 programs compile and link on the verified Linux toolchain. Passing compilation and 29 functional checks and 48 entrypoint checks does not establish correctness of every exercise or interactive path. See the [repository audit](docs/AUDIT.md), [review notes](docs/REVIEW_NOTES.md) and the [build audit](docs/BUILD_AUDIT.md).
+All 56 programs compile and link on the verified Linux toolchain. Passing compilation, 36 functional checks, 56 entrypoint checks and the end-to-end suite does not establish correctness of every exercise or interactive path. See the [repository audit](docs/AUDIT.md), [review notes](docs/REVIEW_NOTES.md) and the [build audit](docs/BUILD_AUDIT.md).
 
 ## Provenance
 
@@ -114,3 +115,7 @@ A complete example with input files and menu instructions is provided in [exampl
 Small console exercises use `common/console.h` to stop with a diagnostic and exit status 1 on an incomplete or malformed scan, rather than continue with uninitialized values. String scans have finite widths and line draining handles EOF. This fail-fast path exits the process; it does not recover the interactive session. The irrigation menu instead validates full lines and prompts again.
 
 The entrypoint tests check termination, not each application's business rules. File parsers and application-specific valid-input scenarios have separate, varying test coverage.
+
+## Second-computer exercises
+
+Eight distinct exercises were recovered and corrected from a second archive; earlier copies of existing projects, one repeated exercise and an empty file were skipped. See the [import report](docs/SECOND_COMPUTER_IMPORT.md) for the per-file decisions, corrections, test scope and preserved grading assumptions. [Runnable examples](examples/recovered/README.md) include the recovered file inputs.

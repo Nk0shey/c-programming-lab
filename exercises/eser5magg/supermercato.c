@@ -91,7 +91,7 @@ if (!l) return -1;
     FILE *fp=fopen(nome_file,"r"); if (!fp) return -1;
     T_Prodotto p; int n,count=0;
     while ((n=fscanf(fp,"%15s %30s %30s %d %f %d",p.cod,p.nome,p.marca,&p.reparto,&p.prezzo,&p.quantita))==6) {
-        if (!InserisciInListaOrdinata(l,p)) { fclose(fp); return -1; } ++count;
+        if (InserisciInListaOrdinata(l,p) != 1) { fclose(fp); return -1; } ++count;
     }
     int ok=n==EOF && !ferror(fp); fclose(fp); return ok ? count : -1;
 }
@@ -142,21 +142,13 @@ void VisualizzaLista(List l) {
  * 1 se l'articolo è stato trovato nella lista, 0 altrimenti
  */
 int ModificaQuantita(List l, char* cod, int quantita) {
-	//TODO: da completare
-	int trovato = 0;
-
-	T_Prodotto aux;
-	strcpy(aux.cod, cod);
-
-	while ((l != NULL) && comparaCodice(&aux, &(l->info))>=0) {
-		if (comparaCodice(&aux.cod, &(l->info.cod))) {
-			l->info.quantita = quantita;
-			trovato = 1;
-			break;
-		}
-		l = l->next;
-	}
-	return trovato;
+    if (!cod || quantita < 0) return 0;
+    for (; l; l = l->next) {
+        int cmp = strcmp(l->info.cod, cod);
+        if (cmp > 0) break;
+        if (cmp == 0) { l->info.quantita = quantita; return 1; }
+    }
+    return 0;
 }
 
 /*Funzioni Punto 4: prezzo massimo e minimo dei prodotti di un una determinata marca*/
@@ -310,7 +302,6 @@ int  main(void) {
 	T_Prodotto* vett_articoli=NULL;
 	int soglia;
 	List nuovalista = NULL;
-	T_Prodotto articolo;
 
 
 
@@ -368,6 +359,7 @@ int  main(void) {
 			printf("Immetti un reparto: ");
 			lab_scanf("%d", &reparto);
 			dim = 0;
+			free(vett_articoli);
 			vett_articoli = ArticoliReparto(lista_prodotti, reparto, &dim);
 			VisualizzaArticoliVettore(vett_articoli, dim);
 			break;
@@ -375,6 +367,7 @@ int  main(void) {
 			printf("Immetti una quantita' soglia: ");
 			lab_scanf("%d", &soglia);
 
+			CancellaLista(&nuovalista);
 			nuovalista = ArticoliQuantitaMinore(lista_prodotti, soglia);
 			printf("Visualizzazione dati estratti");
 			VisualizzaLista(nuovalista);
@@ -399,4 +392,5 @@ int  main(void) {
 	free(vett_articoli);
 	CancellaLista(&nuovalista);
 	CancellaLista(&lista_prodotti);
+    return 0;
 }

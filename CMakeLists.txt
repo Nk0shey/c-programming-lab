@@ -211,6 +211,41 @@ if(NOT MSVC)
   target_link_libraries(sim4_main PRIVATE m)
 endif()
 
+
+# Additional exercises recovered from a second computer.
+add_executable(class_even_numbers "exercises/class/even_numbers.c")
+if(NOT MSVC)
+  target_link_libraries(class_even_numbers PRIVATE m)
+endif()
+add_executable(eser8apr_spedizioni "exercises/eser8apr/spedizioni.c")
+if(NOT MSVC)
+  target_link_libraries(eser8apr_spedizioni PRIVATE m)
+endif()
+add_executable(eser27march_task02 "exercises/eser27march/task02.c")
+if(NOT MSVC)
+  target_link_libraries(eser27march_task02 PRIVATE m)
+endif()
+add_executable(eser27march_task03 "exercises/eser27march/task03.c")
+if(NOT MSVC)
+  target_link_libraries(eser27march_task03 PRIVATE m)
+endif()
+add_executable(eser27march_task04 "exercises/eser27march/task04.c")
+if(NOT MSVC)
+  target_link_libraries(eser27march_task04 PRIVATE m)
+endif()
+add_executable(eser27march_task05 "exercises/eser27march/task05.c")
+if(NOT MSVC)
+  target_link_libraries(eser27march_task05 PRIVATE m)
+endif()
+add_executable(eser27march_task06 "exercises/eser27march/task06.c")
+if(NOT MSVC)
+  target_link_libraries(eser27march_task06 PRIVATE m)
+endif()
+add_executable(apr01_somma_ricorsiva "exercises/esercitazione_01_04/somma_ricorsiva.c")
+if(NOT MSVC)
+  target_link_libraries(apr01_somma_ricorsiva PRIVATE m)
+endif()
+
 get_property(exercise_targets DIRECTORY PROPERTY BUILDSYSTEM_TARGETS)
 # Tests are C executables; CTest does not require Python.
 include(CTest)
@@ -239,4 +274,21 @@ if(BUILD_TESTING)
       -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/smoke_entrypoint.cmake")
     set_tests_properties(smoke_${target} PROPERTIES TIMEOUT 12)
   endforeach()
+endif()
+
+if(BUILD_TESTING)
+  file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/test-work/recovered_cli")
+  add_test(NAME recovered_cli COMMAND "${CMAKE_COMMAND}"
+    "-DSAMPLES=${CMAKE_CURRENT_SOURCE_DIR}/examples/recovered"
+    "-DEVEN=$<TARGET_FILE:class_even_numbers>"
+    "-DSUM=$<TARGET_FILE:apr01_somma_ricorsiva>"
+    "-DBONUS=$<TARGET_FILE:eser27march_task02>"
+    "-DWEATHER=$<TARGET_FILE:eser27march_task03>"
+    "-DBOOKS=$<TARGET_FILE:eser27march_task04>"
+    "-DLOANS=$<TARGET_FILE:eser27march_task05>"
+    "-DEXAMS=$<TARGET_FILE:eser27march_task06>"
+    "-DSHIPMENTS=$<TARGET_FILE:eser8apr_spedizioni>"
+    -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/recovered_cli.cmake")
+  set_tests_properties(recovered_cli PROPERTIES TIMEOUT 30
+    WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/test-work/recovered_cli")
 endif()

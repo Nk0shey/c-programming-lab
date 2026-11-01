@@ -1,0 +1,8 @@
+s1001 Programmazione pr001 30 35
+s1002 Analisi1 pr002 20 18
+s1003 Fisica pr003 15 15
+s1004 Algebra pr004 10 14
+s1005 Reti pr005 25 30
+s1006 BasiDati pr006 12 7
+s1007 Architettura pr007 18 18
+s1008 SistemiOperativi pr008 21 29

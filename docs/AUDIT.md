@@ -1,5 +1,7 @@
 # Repository audit
 
+Current extension: the [second-computer import](SECOND_COMPUTER_IMPORT.md) brings the collection to 56 programs and 93 passing CTest checks. The sections below record earlier review stages and their historical counts.
+
 Reviewed the GitHub main snapshot `b0a192324249554f030de0e6ac0a1fbe498a4517` and applied the corrections below. Local file comparisons accounted for GitHub text newline normalization.
 
 ## Verified
