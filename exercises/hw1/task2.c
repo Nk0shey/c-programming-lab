@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 #include <stdio.h>
 #define N 5
 
@@ -8,13 +9,13 @@ int main(void) {
     printf("Inserisci gli elementi dell'array a:\n");
     for (int i = 0; i < N; i++) {
         printf("a[%d] = ", i);
-        scanf("%d", &a[i]);
+        lab_scanf("%d", &a[i]);
     }
 
     printf("Inserisci gli elementi dell'array b:\n");
     for (int i = 0; i < N; i++) {
         printf("b[%d] = ", i);
-        scanf("%d", &b[i]);
+        lab_scanf("%d", &b[i]);
     }
 
     for (int i = 0; i < N; i++) {

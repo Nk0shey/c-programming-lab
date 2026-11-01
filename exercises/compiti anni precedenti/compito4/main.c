@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 /***********************************************************************************************************
 * === MODULO 2 ===
 * TEMPO: 120 minuti
@@ -580,7 +581,7 @@ int menu() {
 		"0. Esci\n"
 		"Inserisci scelta: "
 	);
-	scanf("%d", &scelta);
+	lab_scanf("%d", &scelta);
 	return scelta;
 }
 
@@ -611,7 +612,7 @@ int main() {
 			break;
 		case 2:
 			printf("Inserisci codice stazione: ");
-			scanf("%s", codice_stazione);
+			lab_scanf("%16s", codice_stazione);
 			int* conteggi = conta_rilevazioni_per_tipo(lista_stazioni, codice_stazione);
 			if (conteggi) {
 				printf("Rilevazioni per tipo:\n");
@@ -623,7 +624,7 @@ int main() {
 			break;
 		case 3:
 			printf("Inserisci soglia temperatura: ");
-			scanf("%f", &valore_soglia);
+			lab_scanf("%f", &valore_soglia);
 			vettore_stazioni = stazioni_alta_temperatura(&lista_stazioni, valore_soglia, &num_stazioni);
 			if (vettore_stazioni != NULL) {
 				printf("Stazioni con temperatura superiore a %.2f per almeno %d rilevazioni consecutive:\n", valore_soglia, NUM_RILEVAZIONI_CONSECUTIVE);
@@ -640,7 +641,7 @@ int main() {
 			do {
 				printf("Inserisci tipo di sensore (%d: %s, %d: %s, %d: %s): ", TEMPERATURA, sensore_to_string(TEMPERATURA), UMIDITA, sensore_to_string(UMIDITA), PRESSIONE, sensore_to_string(PRESSIONE));
 				int tipo_input;
-                if (scanf("%d", &tipo_input) != 1) tipo_input = 0;
+                if (lab_scanf("%d", &tipo_input) != 1) tipo_input = 0;
                 tipo_sensore = (TipoSensore)tipo_input;
 			} while (tipo_sensore < 0 || tipo_sensore >= NUM_TIPI_SENSORE);
 			dealloca_albero(&albero); // Dealloca l'albero se già esiste
@@ -654,7 +655,7 @@ int main() {
 				break;
 			}
 			printf("Inserisci valore soglia: ");
-			scanf("%f", &valore_soglia);
+			lab_scanf("%f", &valore_soglia);
 			salva_albero_file(albero, f_out, valore_soglia);
 			fclose(f_out);
 			printf("File salvato\n");

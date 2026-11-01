@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 /**********************************************************************************
  * === MODULO 2 ===
  *
@@ -503,7 +504,7 @@ unsigned menu() {
            "0. Esci\n"
            "\tSCELTA: ");
     fflush(stdout);
-    scanf("%u", &scelta);
+    lab_scanf("%u", &scelta);
     return scelta;
 }
 
@@ -535,7 +536,7 @@ int main() {
                 int zona;
                 do {
                     printf("\nInserisci zona [%d: CENTRO/%d: PERIFERIA/%d: HINTERLAND]: ", CENTRO, PERIFERIA, HINTERLAND);
-                    scanf("%d",&zona);
+                    lab_scanf("%d",&zona);
                 }while (zona < CENTRO || zona > HINTERLAND);
                 stampa_ordini_da_consegnare(&lista, (zona_t) zona);
                 break;

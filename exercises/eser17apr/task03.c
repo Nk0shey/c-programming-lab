@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 //
 // Created by kozch on 01.06.2026.
 //
@@ -103,18 +104,18 @@ int InserisciNuovoLibro(Lista *l) {
 	//da implementare a cura dello studente
 	Libro nuovo_libro;
 	printf("\nInserisci codice:");
-	scanf("%[^\n]s", nuovo_libro.cod);
-	while (getchar() != '\n');
+	lab_scanf("%10[^\n]", nuovo_libro.cod);
+	lab_discard_line();
 	printf("\nInserisci nome autore:");
-	scanf("%[^\n]s", nuovo_libro.autore);
-	while (getchar() != '\n');
+	lab_scanf("%40[^\n]", nuovo_libro.autore);
+	lab_discard_line();
 	printf("\nInserisci il titolo:");
-	scanf("%[^\n]s", nuovo_libro.titolo);
-	while (getchar() != '\n');
+	lab_scanf("%40[^\n]", nuovo_libro.titolo);
+	lab_discard_line();
 	printf("\nInserisci quantita:");
-	scanf("%d", &nuovo_libro.quantita);
+	lab_scanf("%d", &nuovo_libro.quantita);
 	printf("\nInserisci prezzo:");
-	scanf("%f", &nuovo_libro.prezzo);
+	lab_scanf("%f", &nuovo_libro.prezzo);
 
 	return InserisciInTesta(l, nuovo_libro);
 }
@@ -351,57 +352,57 @@ int main(void) {
 		printf("\n\n0. Esci");
 		printf("\n\tscelta: ");
 
-		scanf("%d", &scelta);
-		while (getchar() != '\n');
+		lab_scanf("%d", &scelta);
+		lab_discard_line();
 		switch (scelta) {
 		case 1:
 			InserisciNuovoLibro(&libreria);
 			break;
 		case 2:
 			printf("\nInserisci codice libro: ");
-			scanf("%[^\n]s", codice);
-			while (getchar() != '\n');
+			lab_scanf("%10[^\n]", codice);
+			lab_discard_line();
 			EffettuaPrestito(libreria, codice);
 			break;
 		case 3:
 			printf("\nInserisci nome autore: ");
-			scanf("%[^\n]s", autore);
-			while (getchar() != '\n');
+			lab_scanf("%40[^\n]", autore);
+			lab_discard_line();
 			CercaPerNome(libreria, autore);
 			break;
 		case 4:
 			printf("\nInserisci codice libro: ");
-			scanf("%[^\n]s", codice);
-			while (getchar() != '\n');
+			lab_scanf("%10[^\n]", codice);
+			lab_discard_line();
 			CancellaLibroPerCodice(&libreria, codice);
 			break;
 		case 5:
 			printf("\nInserisci nome autore: ");
-			scanf("%[^\n]s", autore);
-			while (getchar() != '\n');
+			lab_scanf("%40[^\n]", autore);
+			lab_discard_line();
 			CancellaTuttiPerAutore(&libreria, autore);
 			break;
 		case 6:
 			printf("\nInserisci prezzo: ");
-			scanf("%d", &prezzo);
+			lab_scanf("%d", &prezzo);
 			StampaLibriPrezzoInferiore(libreria, prezzo);
 			break;
 		case 7:
 			printf("\nInserisci nome file: ");
-			scanf("%[^\n]s", nome_file);
-			while (getchar() != '\n');
+			lab_scanf("%40[^\n]", nome_file);
+			lab_discard_line();
 			ScriviFileNonDisponibili(libreria, nome_file);
 			break;
 		case 8:
 			printf("\nInserisci nome file:");
-			scanf("%[^\n]s", nome_file);
-			while (getchar() != '\n');
+			lab_scanf("%40[^\n]", nome_file);
+			lab_discard_line();
 			ScriviFileBinario(libreria, nome_file);
 			break;
 		case 9:
 			printf("\nInserisci nome file: ");
-			scanf("%[^\n]s", nome_file);
-			while (getchar() != '\n');
+			lab_scanf("%40[^\n]", nome_file);
+			lab_discard_line();
 			LeggiFileBinario(&libreria, nome_file);
 			break;
 		case 10:

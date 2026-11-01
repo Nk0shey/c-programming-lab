@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -195,7 +196,7 @@ void stampa_taxi_disponibili(CodaTaxi c) {
 void inserisci_nuovo_taxi(CodaTaxi *c) {
 T_Taxi t = {0};
     printf("Targa codice km passeggeri: ");
-    if (scanf("%30s %30s %d %d",t.targa,t.codice,&t.km_totali,&t.passeggeri) != 4) return;
+    if (lab_scanf("%30s %30s %d %d",t.targa,t.codice,&t.km_totali,&t.passeggeri) != 4) return;
     if (t.km_totali < 0 || t.passeggeri < 0) return;
     t.stato = DISPONIBILE; InCoda(c,t);
 }
@@ -440,8 +441,8 @@ int main(void) {
         printf("\n0. ESCI");
 
         printf("\n\nScelta: ");
-        scanf("%d", &scelta);
-        while (getchar() != '\n');
+        lab_scanf("%d", &scelta);
+        lab_discard_line();
 
         switch(scelta) {
             case 1:
@@ -460,14 +461,14 @@ int main(void) {
             case 5:
                 //TODO: Da completare
                 printf("Inserisci numero passeggeri: ");
-                scanf("%d", &nuova_corsa.passeggeri);
+                lab_scanf("%d", &nuova_corsa.passeggeri);
                 printf("Inserisci km tratta: ");
-                scanf("%d", &nuova_corsa.km_tratta);
+                lab_scanf("%d", &nuova_corsa.km_tratta);
                 inserisci_nuova_corsa(&taxi_occupati, &taxi_disponibili, &storico_corse, nuova_corsa);
                 break;
             case 6:
                 printf("\nInserisci codice taxi: ");
-                scanf("%s", codice_corsa);
+                lab_scanf("%30s", codice_corsa);
                 termina_corsa(&taxi_occupati, &taxi_disponibili, storico_corse, codice_corsa);
                 break;
             case 7:
@@ -480,12 +481,12 @@ int main(void) {
                 break;
             case 8:
                 printf("\nInserisci nome file: ");
-                scanf("%s", nome_file_binario);
+                lab_scanf("%20s", nome_file_binario);
                 scrivi_file_binario(&taxi_occupati, &taxi_disponibili, nome_file_binario);
                 break;
             case 9:
                 printf("\nInserisci nome file: ");
-                scanf("%s", nome_file_binario);
+                lab_scanf("%20s", nome_file_binario);
                 leggi_file_binario(&taxi_occupati, &taxi_disponibili, nome_file_binario);
                 break;
             case 10:

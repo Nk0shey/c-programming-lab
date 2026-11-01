@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 //
 // Created by kozch on 01.06.2026.
 //
@@ -115,12 +116,12 @@ List lista;
         printf("6. Stampa lista\n");
         printf("0. Esci\n");
         printf("Scelta: ");
-        scanf("%d", &scelta);
+        lab_scanf("%d", &scelta);
 
         switch (scelta) {
             case 1:
                 printf("Inserisci un valore intero: ");
-                scanf("%d", &valore);
+                lab_scanf("%d", &valore);
 
                 if (cons(&lista, valore)) {
                     printf("Valore inserito correttamente.\n");
@@ -139,7 +140,7 @@ List lista;
 
             case 4:
                 printf("Inserisci valore da cercare: ");
-                scanf("%d", &valore);
+                lab_scanf("%d", &valore);
 
                 if (cercaValore(lista, valore)) {
                     printf("Valore presente nella lista.\n");

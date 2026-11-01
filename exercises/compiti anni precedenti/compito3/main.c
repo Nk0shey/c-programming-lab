@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 /******************************************************************************
 *  Implementare in ANSI C un programma che permetta la gestione di un centro di
 *   smistamento di merci.
@@ -540,7 +541,7 @@ int Menu() {
            "6 - Crea coda merci pesanti\n"
            "0 - Esci\n"
            "Scelta: ");
-    scanf("%d", &scelta);
+    lab_scanf("%d", &scelta);
 
     return scelta;
 }
@@ -579,7 +580,7 @@ int main() {
                     break;
                 }
                 printf("Inserisci il codice di destinazione: ");
-                scanf("%s", codice_destinazione);
+                lab_scanf("%9s", codice_destinazione);
                 unsigned num_elementi;
                 float peso_totale;
                 int risultato = quantificaMerce(rulli, codice_destinazione,
@@ -601,10 +602,10 @@ int main() {
                     break;
                 }
                 printf("Inserisci il codice di destinazione: ");
-                scanf("%s", codice_destinazione);
+                lab_scanf("%9s", codice_destinazione);
                 unsigned N;
                 printf("Inserisci il numero di merci da estrarre: ");
-                scanf("%u", &N);
+                lab_scanf("%u", &N);
                 unsigned num_merci;
                 Merce* merci_estratte = estraiPrimeNMerci(rulli, codice_destinazione, num_rulli, N, &num_merci);
                 if (merci_estratte == NULL) {
@@ -640,7 +641,7 @@ int main() {
                 }
                 printf("Inserisci il codice della merce da cercare: ");
 
-                scanf("%s", codice_merce);
+                lab_scanf("%9s", codice_merce);
                 merce_trovata = cercaMerceInAlbero(A, codice_merce);
                 if (merce_trovata != NULL) {
                     printf("Merce trovata:\n");
@@ -660,9 +661,9 @@ int main() {
                 do {
                     printf("Inserisci il valore di soglia per il peso: ");
 
-                    if (scanf("%f", &soglia) != 1) {
+                    if (lab_scanf("%f", &soglia) != 1) {
                         printf("Input non valido. Inserisci un numero.\n");
-                        while (getchar() != '\n'); // Pulisce il buffer di input
+                        lab_discard_line(); // Pulisce il buffer di input
                     } else
                         break; // Input valido
                 } while (true);

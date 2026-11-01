@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 /******************************************************************************
  * === MODULO 2 ===
  * Appello di Fondamenti di Programmazione - A.A. 2025/26
@@ -545,7 +546,7 @@ int menu(void) {
     printf("0. Esci\n");
     printf("Scelta: ");
 
-    if (scanf("%d", &scelta) != 1) {
+    if (lab_scanf("%d", &scelta) != 1) {
         return 0;
     }
 
@@ -587,7 +588,7 @@ int main(void) {
         switch (scelta) {
             case 1:
                 printf("Inserire corriere: ");
-                scanf("%49s", corriere);
+                lab_scanf("%49s", corriere);
 
                 trovata = cerca_corriere(magazzino, corriere);
                 if (trovata != NULL) {
@@ -599,7 +600,7 @@ int main(void) {
 
             case 2:
                 printf("Inserire corriere: ");
-                scanf("%49s", corriere);
+                lab_scanf("%49s", corriere);
 
                 trovata = cerca_corriere(magazzino, corriere);
                 if (trovata != NULL) {
@@ -611,7 +612,7 @@ int main(void) {
 
             case 3:
                 printf("Inserire soglia di peso: ");
-                scanf("%f", &soglia);
+                lab_scanf("%f", &soglia);
 
                 if (estratti != NULL) {
                     free(estratti);

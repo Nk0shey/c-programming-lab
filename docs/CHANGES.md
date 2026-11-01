@@ -47,3 +47,7 @@ Prepared with AI-assisted implementation and review. The original uploaded archi
 - `sim24aug/simulazione_m2_basi_droni.c`
 
 Other original exercise code is retained. The test suite and audit state the verification scope.
+
+## Completion pass
+
+Implemented the remaining irrigation menu and supporting operations from the written specification, added example datasets, hardened console scans and EOF handling, corrected admission/room assignment and queue interleaving, and added native entrypoint checks. See AUDIT.md for verified scope.

@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 //
 // Created by kozch on 07.06.2026.
 //
@@ -13,7 +14,7 @@ int main(void) {
 
     do {
         printf("Inserisci il numero:");
-        scanf("%d", &elem);
+        lab_scanf("%d", &elem);
 
         if ((elem < 0) || (InCoda(&coda, elem) == -1))
             break;

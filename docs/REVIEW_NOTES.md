@@ -23,3 +23,5 @@ The automated CTest suite covers linked ADT transfers and duplicate insertion, n
 This repository is suitable for continued academic development. A finished portfolio application should be selected and tested against its complete requirements separately.
 
 The follow-up review is recorded in [AUDIT.md](AUDIT.md). The redundant root Python build script was removed; the Python test runner remains an optional alternative.
+
+The completion pass adds a finished irrigation demonstration, console fail-fast handling and 48 entrypoint checks. Current native verification comprises 29 functional checks and 48 termination checks; see AUDIT.md for scope.

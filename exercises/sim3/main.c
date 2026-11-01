@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -771,7 +772,7 @@ int main(void) {
             "\nScelta: "
         );
 
-        scanf("%d", &scelta);
+        lab_scanf("%d", &scelta);
 
         switch (scelta) {
 
@@ -793,7 +794,7 @@ int main(void) {
         case 2:
 
             printf("Inserire priorita minima: ");
-            scanf("%d", &soglia);
+            lab_scanf("%d", &soglia);
 
             trovata = prima_richiesta_urgente(
                 reparti,
@@ -818,7 +819,7 @@ int main(void) {
         case 3:
 
             printf("Inserire tempo minimo: ");
-            scanf("%d", &soglia);
+            lab_scanf("%d", &soglia);
 
             free(vettore);
 
@@ -852,7 +853,7 @@ int main(void) {
             int processate;
 
             printf("Inserire priorita minima: ");
-            scanf("%d", &soglia);
+            lab_scanf("%d", &soglia);
 
             processate = processa_richieste(
                 reparti,

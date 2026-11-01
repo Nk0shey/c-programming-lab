@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 //
 // Created by kozch on 07.06.2026.
 //
@@ -26,7 +27,7 @@ int main(void) {
     printf("** coda_1 **\n");
     do {
         printf("Inserire un numero: ");
-        scanf("%d", &elem);
+        lab_scanf("%d", &elem);
         if ((elem < 0) || (InCoda(&c1, elem) == -1)) {
             break;
         }
@@ -35,8 +36,8 @@ int main(void) {
     printf("** coda_2 **\n");
     do {
         printf("Inserire un numero: ");
-        scanf("%d", &elem);
-        if ((elem < 0) || (InCoda(&c1, elem) == -1)) {
+        lab_scanf("%d", &elem);
+        if ((elem < 0) || (InCoda(&c2, elem) == -1)) {
             break;
         }
     } while (elem >= 0);

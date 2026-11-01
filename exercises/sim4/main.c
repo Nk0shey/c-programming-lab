@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -524,7 +525,7 @@ int main(void) {
             "\nScelta: "
         );
 
-        scanf("%d", &scelta);
+        lab_scanf("%d", &scelta);
 
 
         switch (scelta) {
@@ -570,7 +571,7 @@ int main(void) {
 
             printf("Inserire il numero minimo di studenti: ");
 
-            scanf("%d", &soglia);
+            lab_scanf("%d", &soglia);
 
             free(vettore);
 

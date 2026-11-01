@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 //
 // Created by kozch on 04.06.2026.
 //
@@ -12,7 +13,7 @@ int main (void) {
 
     do {
         printf("Inserisci il numero: ");
-        scanf("%d", &numero);
+        lab_scanf("%d", &numero);
     } while(numero < 0);
 
     x = numero;

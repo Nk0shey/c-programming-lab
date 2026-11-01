@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 /******************************************************************************
  * === MODULO 2 ===
  * SIMULAZIONE ESAME - Fondamenti di Programmazione - A.A. 2025/26
@@ -505,7 +506,7 @@ int menu(void) {
     printf("0. Esci\n");
     printf("Scelta: ");
 
-    if (scanf("%d", &scelta) != 1) {
+    if (lab_scanf("%d", &scelta) != 1) {
         return 0;
     }
 
@@ -539,7 +540,7 @@ int main(void) {
         switch (scelta) {
             case 1:
                 printf("Inserire reparto: ");
-                scanf("%49s", reparto);
+                lab_scanf("%49s", reparto);
 
                 trovato = cerca_reparto(centro, reparto);
                 if (trovato != NULL) {
@@ -551,7 +552,7 @@ int main(void) {
 
             case 2:
                 printf("Inserire reparto: ");
-                scanf("%49s", reparto);
+                lab_scanf("%49s", reparto);
 
                 trovato = cerca_reparto(centro, reparto);
                 if (trovato != NULL) {
@@ -563,7 +564,7 @@ int main(void) {
 
             case 3:
                 printf("Inserire soglia priorita (1-5): ");
-                scanf("%d", &soglia);
+                lab_scanf("%d", &soglia);
 
                 num_estratti = 0;
 

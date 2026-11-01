@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 /***************************************************************************************************************
 * ==== MODULO 2 =====
 * 
@@ -347,7 +348,7 @@ int main() {
 			"\n 3. Biglietti disponibili"
 			"\n 0. Esci"
 			"\n\nScelta: ");
-		scanf("%d", &scelta);
+		lab_scanf("%d", &scelta);
 
 		switch(scelta) {
 		case 1:
@@ -362,11 +363,11 @@ int main() {
 		case 2:
 
 			printf("Inserisci codice volo: ");
-			scanf("%s", codice_volo);
+			lab_scanf("%5s", codice_volo);
 			printf("Inserisci cognome: ");
-			scanf("%s", cognome);
+			lab_scanf("%29s", cognome);
 			printf("Inserisci nome: ");
-			scanf("%s", nome);
+			lab_scanf("%29s", nome);
 
 			volo = nuova_prenotazione(lista_voli, codice_volo, cognome, nome);
 			if (volo == NULL) 

@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 /*esercitazione vettori di liste*/
 #include<stdio.h>
 #include<stdlib.h>
@@ -205,8 +206,8 @@ int main(void) {
 		printf("\t5) Durata totale e numero collegamenti effettuati in una fascia oraria\n");
 		printf("\t0) Esci\n");
 		printf("\n\nInserisci scelta:   ");
-		scanf("%d", &scelta);
-		while (getchar() != '\n');
+		lab_scanf("%d", &scelta);
+		lab_discard_line();
 
 		switch (scelta) {
 		case 1: /* leggi da file */
@@ -227,7 +228,7 @@ int main(void) {
 			
 			//TODO: da completare
 				printf("\nInserisci nome utente: ");
-				scanf("%s", utente);
+				lab_scanf("%50s", utente);
 				stampaAccessiPerUtente(archivio, N, utente);
 
 			break;
@@ -239,7 +240,7 @@ int main(void) {
 			//TODO: da completare
 				do {
 					printf("\nInserisci il giorno 1-31: ");
-					scanf("%d", &giorno);
+					lab_scanf("%d", &giorno);
 				} while (giorno < 0 || giorno > N);
 
 				if(!isEmpty(archivio[giorno-1])){
@@ -257,11 +258,11 @@ int main(void) {
 			
 			//TODO: da completare
 			printf("\n\nInserisci ora inizio fascia oraria: ");
-			scanf("%d", &orainizio);
+			lab_scanf("%d", &orainizio);
 			printf("\n\nInserisci ora finale fascia oraria: ");
-			scanf("%d", &orafine);
+			lab_scanf("%d", &orafine);
 			printf("\n\nInserisci l'utente: ");
-			scanf("%s", utente);
+			lab_scanf("%50s", utente);
 
 			numaccessi = TotaleAccessi(archivio, N, orainizio, orafine, utente, &duratatot);
 

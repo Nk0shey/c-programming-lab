@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 /******************************************************************************
  * ===== MODULO 2 =====
  *
@@ -317,7 +318,7 @@ int Menu() {
            "3 - Quesito c: calcola tempo di percorrenza\n"
            "0 - Uscita\n\n"
            "Scelta: ");
-    scanf("%d", &scelta);
+    lab_scanf("%d", &scelta);
 
     return scelta;
 }
@@ -344,7 +345,7 @@ int main() {
                 break;
             case 2:
                 printf("Inserisci il nome della stazione: ");
-                if (scanf("%s", stazione) != 1) {
+                if (lab_scanf("%49s", stazione) != 1) {
                     printf("Errore nell'inserimento della stazione\n");
                     break;
                 }
@@ -353,7 +354,7 @@ int main() {
                 break;
             case 3:
                 printf("Inserisci il nome della stazione: ");
-                if (scanf("%s", stazione) != 1) {
+                if (lab_scanf("%49s", stazione) != 1) {
                     printf("Errore nell'inserimento della stazione\n");
                     break;
                 }

@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 /*
  * Sviluppo di una applicazione in ANSI C per la gestione delle casse di un ufficio.
  *
@@ -374,7 +375,7 @@ void dealloca_albero(Albero radice) {
 }
 int Menu() {
 int scelta=0; printf("1 Carica | 2 Operazioni lunghe | 3 Tempi | 4 Albero | 5 Salva | 0 Esci: ");
-    if (scanf("%d",&scelta)!=1) { return 0; }
+    if (lab_scanf("%d",&scelta)!=1) { return 0; }
     return scelta;
 }
 
@@ -382,11 +383,11 @@ int main(void) {
 Cassa *casse=NULL; int dim=0,scelta; Albero a=NULL;
     while ((scelta=Menu())!=0) {
         if (scelta==1) {
-            char file[256]; if (scanf("%255s",file)!=1) break;
+            char file[256]; if (lab_scanf("%255s",file)!=1) break;
             int n; Cassa *nuove=carica_casse(file,&n);
             if (nuove) { dealloca_casse(&casse,dim); dealloca_albero(a); a=NULL; casse=nuove; dim=n; visualizza_casse(casse,dim); }
         } else if (scelta==2) {
-            float soglia; if (scanf("%f",&soglia)!=1) break;
+            float soglia; if (lab_scanf("%f",&soglia)!=1) break;
             ListaClienti l=operazioni_lunghe(casse,dim,soglia); visualizza_clienti(l); disalloca_clienti(&l);
         } else if (scelta==3) {
             float *v=tempo_stimato(casse,dim); if (v) { for (int i=0;i<dim;++i) printf("%d %.2f\n",casse[i].id,v[i]); free(v); }

@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 /*
   Sviluppo di applicazione in ANSI C per gestire
   un servizio di prestito libri di una libreria.
@@ -362,7 +363,7 @@ int Menu() {
         "5 - Stampa Elenco ordinato \n"
         "0 - Uscita\n\n"
         "Scelta: ");
-    scanf("%d", &scelta);
+    lab_scanf("%d", &scelta);
 
     return scelta;
 }
@@ -403,7 +404,7 @@ int main(void) {
             // invocare la funzione CaricaLibri
             // visualizzare le liste ottenute
             printf("\nInserisci nome file: ");
-            scanf("%s", nomefile);
+            lab_scanf("%31s", nomefile);
             CaricaLibri(nomefile, &disponibili, &prestati);
             printf("\nLista libri disponibili:\n");
             VisualizzaLibri(disponibili);
@@ -416,7 +417,7 @@ int main(void) {
             // invocare la funzione Prestito
             // visualizzare le liste modificate
             printf("\nInserisci codice libro: ");
-            scanf("%s", codice);
+            lab_scanf("%7s", codice);
             esito = Prestito(codice, &disponibili, &prestati);
             if (esito)
                 printf("\nLibro %s pretato correttamente\n", codice);
@@ -435,10 +436,10 @@ int main(void) {
             // invocare la funzione EstraiLibriDiInteresse
             // visualizzare il vettore restituito
             printf("\nInserisci categoria: ");
-            scanf("%s", genere);
-            while (getchar() != '\n');
+            lab_scanf("%15s", genere);
+            lab_discard_line();
             printf("\nInserisci costo massimo: ");
-            scanf("%f", &costo_max);
+            lab_scanf("%f", &costo_max);
             vett = EstraiLibriDiInteresse(disponibili, costo_max, genere, &dim);
             VisualizzaVettoreLibri(vett, dim);
             free(vett);

@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 //
 // Created by kozch on 28.05.2026.
 //
@@ -298,7 +299,7 @@ int main (void) {
     int somma_livello;
 
     printf("\nInserisci il livello: ");
-    scanf("%d", &livello);
+    lab_scanf("%d", &livello);
 
     somma_livello = sommaLivello(a, livello);
 
@@ -308,7 +309,7 @@ int main (void) {
     int somma_sottoalbero;
 
     printf("Inserisci l'etichetta radice sottoalbero: ");
-    scanf("%d", &etichetta);
+    lab_scanf("%d", &etichetta);
 
     somma_sottoalbero = sommaSottoAlbero(a, etichetta);
     printf("Somma del sottoalbero con radice %d: %d\n", etichetta, somma_sottoalbero);
@@ -348,7 +349,7 @@ int main (void) {
     Lista lista_livello1;
 
     printf("\nInserisci livello: ");
-    scanf("%d", &livello);
+    lab_scanf("%d", &livello);
 
     initLista(&lista_livello1);
     costruisciListaLivello(a, livello, &lista_livello1);

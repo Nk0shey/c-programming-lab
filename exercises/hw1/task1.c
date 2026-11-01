@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 #include <stdio.h>
 #define N 5
 
@@ -8,17 +9,17 @@ int main(void) {
 
     for (i = 0; i < N; i++) {
         printf("Inserisci array di 5 elementi[%d] : ", i);
-        scanf("%d", &arr[i]);
+        lab_scanf("%d", &arr[i]);
     }
 
     printf("\nInserisci il valore per contare gli elementi maggiori: ");
-    scanf("%d", &val_magg);
+    lab_scanf("%d", &val_magg);
 
     printf("Inserisci il valore per contare gli elementi uguali: ");
-    scanf("%d", &val_uguale);
+    lab_scanf("%d", &val_uguale);
 
     printf("Inserisci il valore superiore per contare gli elementi > 0 e < di esso: ");
-    scanf("%d", &val_sup);
+    lab_scanf("%d", &val_sup);
 
     for (i = 0; i < N; i++) {
         if (arr[i] > val_magg) {

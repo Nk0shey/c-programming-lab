@@ -26,11 +26,21 @@ Reviewed the GitHub main snapshot `b0a192324249554f030de0e6ac0a1fbe498a4517` and
 
 This remains an academic collection, not 48 finished applications. In particular:
 
-- The irrigation exercise (`compiti anni precedenti/compito 5/testo.c`) still has unwired menu branches for loading/modifying data and lacks complete main-level cleanup. It should not be promoted as a finished application.
-- Many legacy interactive inputs use unchecked `scanf` results or unbounded string formats. Malformed input and end-of-file behaviour need a separate systematic pass before calling the applications robust.
+- Resolved in the completion pass: the irrigation exercise now implements loading, updating, listing, indexing, lookup, reload and cleanup, with synthetic fixtures and a full menu regression test. The written formula is used; the contradictory historical sample is explained in examples/irrigation/README.md.
+- Resolved for console scanning in the completion pass: scans fail fast on missing/malformed input, string conversions have finite widths, and line draining stops at EOF. This is process termination rather than interactive recovery; malformed numeric extremes and file parsing still need application-specific validation.
 - Some original exercise comments still say TODO even where an implementation follows. These are not a reliable completion checklist.
 - Original runtime datasets are absent; synthetic regression fixtures cover selected paths only.
 - Some compiler warnings and analyzer reports remain in untested legacy paths. No blanket claim of memory safety, allocation-failure correctness or full specification compliance is made.
 - Windows/macOS and all compiler families have not been tested.
 
 Further changes should focus on completing and testing one portfolio application end to end, then improving the remaining archive incrementally. Automatically rewriting every exercise would obscure the educational history and exceed what the current tests can validate.
+
+## Completion pass
+
+- Added the irrigation implementation, strict record validation, memory cleanup and a documented example dataset.
+- Added 48 isolated entrypoint checks (empty/zero/malformed input) alongside 29 functional checks.
+- Fixed patient admission input, circular probing for 17 rooms (the supplied hash's range), repeated tree rebuilding and normal-exit cleanup.
+- Fixed the queue-interleaving exercise to populate its second queue correctly.
+- All 48 exercises build; 77 CTest checks pass in the normal and sanitizer builds. Leak detection remains disabled for the environment limitation above.
+
+These results establish the scenarios asserted by the tests. They do not recover the exact text of earlier unsaved versions or prove that every original file parser and allocation-failure path is correct.

@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 /***************************************************************************************************************
 * ==== MODULO 2 =====
 *
@@ -401,9 +402,16 @@ NodoAlbero* cerca_nodo_albero(NodoAlbero* n_albero, int stanza) {
 *
 */
 void inserisci_nodo_albero(Albero* p_albero, TPaziente paziente, int stanza) {
-while (*p_albero) p_albero=stanza<(*p_albero)->stanza ? &(*p_albero)->sx : &(*p_albero)->dx;
-    *p_albero=malloc(sizeof **p_albero); if (!*p_albero) return;
-    (*p_albero)->stanza=stanza; (*p_albero)->paziente=paziente; (*p_albero)->sx=(*p_albero)->dx=NULL;
+/* The supplied hash maps to 0..16. Probe all 17 rooms once. */
+    Albero root = *p_albero;
+    int room = ((stanza % 17) + 17) % 17;
+    int attempts = 0;
+    while (attempts < 17 && cerca_nodo_albero(root, room)) { room = (room + 1) % 17; ++attempts; }
+    if (attempts == 17) { fputs("Nessuna stanza disponibile\n", stderr); return; }
+    while (*p_albero) p_albero = room < (*p_albero)->stanza ? &(*p_albero)->sx : &(*p_albero)->dx;
+    *p_albero = malloc(sizeof **p_albero); if (!*p_albero) return;
+    (*p_albero)->stanza = room; (*p_albero)->paziente = paziente;
+    (*p_albero)->sx = (*p_albero)->dx = NULL;
 }
 
 /*
@@ -487,6 +495,16 @@ void stampa_liste_code(ListaCodePazienti lista_pazienti) {
         ncd = ncd->next;
     }
 }
+void libera_pazienti(ListaPazientiReparto *p) {
+    while (*p) { NodoCodaPazienti *n = *p; *p = n->next; free(n); }
+}
+void libera_code_pazienti(ListaCodePazienti *p) {
+    while (*p) { NodoListaCode *n = *p; *p = n->next; libera_pazienti(&n->pazienti.primo); free(n); }
+}
+void libera_stanze(Albero *a) {
+    if (!*a) return;
+    libera_stanze(&(*a)->sx); libera_stanze(&(*a)->dx); free(*a); *a = NULL;
+}
 int main() {
 
     int num_pazienti = 0;
@@ -513,7 +531,7 @@ int main() {
             "\n 5. Cerca pazienti dato reparto"
             "\n 0. Esci"
             "\n\nScelta: ");
-        scanf("%d", &scelta);
+        lab_scanf("%d", &scelta);
 
         switch (scelta) {
         case 1:
@@ -537,7 +555,7 @@ int main() {
 
                 do {
                     printf("Inserire il nuovo stato 1 o 2: ");
-                    scanf("%d", &nuovo_stato);
+                    lab_scanf("%d", &nuovo_stato);
                 } while (nuovo_stato != DIMESSO && nuovo_stato != RICOVERATO);
 
                 paziente->stato = (StatoPaziente)nuovo_stato;
@@ -546,6 +564,7 @@ int main() {
                     strcpy(paziente->reparto, "dimesso");
                 } else {
                     printf("\nInserisci reparto: ");
+                    lab_scanf("%29s", paziente->reparto);
                 }
             }
             stampa_liste_code(lista_pazienti);
@@ -553,8 +572,8 @@ int main() {
         case 3:
             do {
                 printf("\nInserisci codice priorita: ");
-                scanf("%d", &priorita);
-            } while (priorita < ROSSO && priorita > BIANCO);
+                lab_scanf("%d", &priorita);
+            } while (priorita < ROSSO || priorita > BIANCO);
 
             vett_pazienti = pazienti_dimessi(lista_pazienti, priorita, &dim);
             for (int i = 0; i < dim; i++)
@@ -565,12 +584,13 @@ int main() {
             break;
 
         case 4:
+            libera_stanze(&albero_ricoveri);
             crea_albero(lista_pazienti, &albero_ricoveri);
             break;
 
         case 5:
             printf("\nInserisci nome reparto: ");
-            scanf("%s", reparto);
+            lab_scanf("%29s", reparto);
 
             ListaPazientiReparto l_reparto = NULL;
             pazienti_reparto(albero_ricoveri, &l_reparto, reparto);
@@ -580,9 +600,12 @@ int main() {
                 stampa_paziente(nodo->info);
                 nodo = nodo->next;
             }
+            libera_pazienti(&l_reparto);
             break;
 
         case 0:
+            libera_stanze(&albero_ricoveri);
+            libera_code_pazienti(&lista_pazienti);
             return 0;
 
         default:

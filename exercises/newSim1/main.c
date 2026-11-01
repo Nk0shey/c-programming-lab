@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 /******************************************************************************
  * === SIMULAZIONE ESAME MODULO 2 ===
  * Fondamenti di Programmazione - A.A. 2025/26
@@ -551,7 +552,7 @@ int main(void) {
         printf("6. Ripristina ultima richiesta\n");
         printf("0. Esci\n");
         printf("Scelta: ");
-        scanf("%d", &scelta);
+        lab_scanf("%d", &scelta);
 
         switch (scelta) {
             case 1: {
@@ -580,7 +581,7 @@ int main(void) {
                 unsigned i;
 
                 printf("Categoria (HARDWARE/SOFTWARE/RETE): ");
-                scanf("%31s", categoria_str);
+                lab_scanf("%31s", categoria_str);
                 categoria = string_to_categoria(categoria_str);
 
                 free(medie);
@@ -604,7 +605,7 @@ int main(void) {
                 int esito;
 
                 printf("Codice laboratorio: ");
-                scanf("%31s", codice_lab);
+                lab_scanf("%31s", codice_lab);
 
                 esito = elabora_prossima_richiesta(laboratori,
                                                     num_laboratori,
@@ -620,9 +621,9 @@ int main(void) {
                 unsigned i;
 
                 printf("Priorita minima: ");
-                scanf("%d", &priorita_minima);
+                lab_scanf("%d", &priorita_minima);
                 printf("Durata minima: ");
-                scanf("%d", &durata_minima);
+                lab_scanf("%d", &durata_minima);
 
                 free(estratte);
                 estratte = estrai_richieste(laboratori,

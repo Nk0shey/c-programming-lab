@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 #include <stdio.h>
 
 /*
@@ -329,8 +330,8 @@ int  main(void) {
 
 		printf("\nImmetti una scelta:    ");
 
-		scanf("%d", &scelta);
-		while (getchar() != '\n');
+		lab_scanf("%d", &scelta);
+		lab_discard_line();
 
 		switch (scelta) {
 		case 1:
@@ -342,10 +343,10 @@ int  main(void) {
 			break;
 		case 3:
 			printf("Immetti il codice dell'articolo: ");
-			scanf("%s", cod);
-			while (getchar() != '\n');
+			lab_scanf("%15s", cod);
+			lab_discard_line();
 			printf("\nIntroduci la nuova quantita' presente: ");
-			scanf("%d", &nuovaquantita);
+			lab_scanf("%d", &nuovaquantita);
 			esito = ModificaQuantita(lista_prodotti, cod, nuovaquantita);
 			if (esito)
 				printf("Articolo presente - quantita' modificata\n");
@@ -354,7 +355,7 @@ int  main(void) {
 			break;
 		case 4:
 			printf("Immetti la marcae: ");
-			scanf("%[^\n]s", marca);
+			lab_scanf("%30[^\n]", marca);
 
 			esito = PrezzoMaxMin(lista_prodotti, marca, &prezzomax, &prezzomin);
 			if (esito)
@@ -365,14 +366,14 @@ int  main(void) {
 
 		case 5:
 			printf("Immetti un reparto: ");
-			scanf("%d", &reparto);
+			lab_scanf("%d", &reparto);
 			dim = 0;
 			vett_articoli = ArticoliReparto(lista_prodotti, reparto, &dim);
 			VisualizzaArticoliVettore(vett_articoli, dim);
 			break;
 		case 6:
 			printf("Immetti una quantita' soglia: ");
-			scanf("%d", &soglia);
+			lab_scanf("%d", &soglia);
 
 			nuovalista = ArticoliQuantitaMinore(lista_prodotti, soglia);
 			printf("Visualizzazione dati estratti");
@@ -380,8 +381,8 @@ int  main(void) {
 			break;
 		case 7:
 			printf("Immetti la casa produttrice: ");
-			scanf("%[^\n]s", marca);
-			while (getchar() != '\n');
+			lab_scanf("%30[^\n]", marca);
+			lab_discard_line();
 
 			ScriviSuFile(lista_prodotti, marca);
 			break;

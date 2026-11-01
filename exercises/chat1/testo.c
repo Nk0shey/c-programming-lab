@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 /*  ESERCIZIO 2  - Fondamenti di Informatica - Appello del 12/11/2024
 
 Un noleggiatore di monopattini elettrici deve gestire la sua flotta di monopattini elettrici.
@@ -134,7 +135,7 @@ for (int i = 0; i < dim; ++i) printf("%s %.2f\n", v[i].codice, v[i].autonomia);
 
 int Menu() {
 int scelta = 0; printf("1 Carica | 2 Noleggia | 3 Filtra | 0 Esci: ");
-    if (scanf("%d", &scelta) != 1) { return 0; }
+    if (lab_scanf("%d", &scelta) != 1) { return 0; }
     return scelta;
 }
 
@@ -153,14 +154,14 @@ int main(void) {
 TListaMonopattini disponibili = NULL, noleggiati = NULL; int scelta;
     while ((scelta = Menu()) != 0) {
         if (scelta == 1) {
-            char file[256]; if (scanf("%255s", file) != 1) break;
+            char file[256]; if (lab_scanf("%255s", file) != 1) break;
             printf("Caricati: %d\n", CaricaMonopattini(file, &noleggiati, &disponibili));
             VisualizzaLista(disponibili); VisualizzaLista(noleggiati);
         } else if (scelta == 2) {
-            char codice[32]; if (scanf("%31s", codice) != 1) break;
+            char codice[32]; if (lab_scanf("%31s", codice) != 1) break;
             printf("Noleggio: %d\n", Noleggia(codice, &disponibili, &noleggiati));
         } else if (scelta == 3) {
-            float soglia; int dim; if (scanf("%f", &soglia) != 1) break;
+            float soglia; int dim; if (lab_scanf("%f", &soglia) != 1) break;
             TMonopattino *v = EstraiConAutonomia(disponibili, soglia, &dim);
             VisualizzaVettore(v, dim); free(v);
         }

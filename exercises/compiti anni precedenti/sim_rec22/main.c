@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 /******************************************************************************
  * === MODULO 2 ===
  * Appello di Fondamenti di Programmazione - A.A. 2025/26
@@ -516,7 +517,7 @@ int menu(void) {
     printf("0. Esci\n");
     printf("Scelta: ");
 
-    if (scanf("%d", &scelta) != 1) {
+    if (lab_scanf("%d", &scelta) != 1) {
         return 0;
     }
 
@@ -558,7 +559,7 @@ int main(void) {
         switch (scelta) {
             case 1:
                 printf("Inserire casa editrice: ");
-                scanf("%49s", casa);
+                lab_scanf("%49s", casa);
 
                 trovato = cerca_casa(catalogo, casa);
                 if (trovato != NULL) {
@@ -570,7 +571,7 @@ int main(void) {
 
             case 2:
                 printf("Inserire casa editrice: ");
-                scanf("%49s", casa);
+                lab_scanf("%49s", casa);
 
                 trovato = cerca_casa(catalogo, casa);
                 if (trovato != NULL) {
@@ -582,7 +583,7 @@ int main(void) {
 
             case 3:
                 printf("Inserire tipo da estrarre: ");
-                scanf("%49s", tipo);
+                lab_scanf("%49s", tipo);
 
                 num_estratti = 0;
 

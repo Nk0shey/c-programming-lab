@@ -61,7 +61,7 @@ cmake --build build --parallel 2
 ctest --test-dir build --output-on-failure
 ```
 
-27 checks cover data-structure operations, cleanup, FIFO/LIFO ordering, filtering, sorting ties, invalid file input, closed-ticket statistics and exact matrix output. Each regression test has an isolated working directory and keeps assertions enabled in Release builds.
+29 functional checks cover data-structure operations, cleanup, FIFO/LIFO ordering, filtering, sorting ties, invalid file input, closed-ticket statistics and exact matrix output. Another 48 entrypoint checks exercise empty, incomplete and malformed console input. Each regression test has an isolated working directory and keeps assertions enabled in Release builds.
 
 Optional memory and undefined-behaviour checks with GCC or Clang:
 
@@ -73,7 +73,7 @@ ctest --test-dir build-sanitize --output-on-failure
 
 Where LeakSanitizer cannot inspect processes (as in the preparation environment), use `ASAN_OPTIONS=detect_leaks=0` before the CTest command. Address and undefined-behaviour checks remain enabled; this does not verify leak freedom.
 
-The optional `python3 tests/run.py` runner is also available. Python is needed only for that alternative runner. Use `-DBUILD_TESTING=OFF` to build exercises without the regression executables.
+The optional `python3 tests/run.py` runner runs the 29 functional checks (the 48 entrypoint checks are registered with CTest). Python is needed only for that alternative runner. Use `-DBUILD_TESTING=OFF` to build exercises without the regression executables.
 
 ## Navigate
 
@@ -95,7 +95,7 @@ The optional `python3 tests/run.py` runner is also available. Python is needed o
 
 Many programs expect text input files in their current working directory. Original datasets were not included outside IDE-generated build folders. Source comments describe the exercise-specific formats; regression tests create synthetic data for their own checks. Run file-based programs in a temporary directory because some write output files.
 
-All 48 programs compile and link on the verified Linux toolchain. Passing compilation and 27 regression checks does not establish correctness of every exercise or interactive path. See the [repository audit](docs/AUDIT.md), [review notes](docs/REVIEW_NOTES.md) and the [build audit](docs/BUILD_AUDIT.md).
+All 48 programs compile and link on the verified Linux toolchain. Passing compilation and 29 functional checks and 48 entrypoint checks does not establish correctness of every exercise or interactive path. See the [repository audit](docs/AUDIT.md), [review notes](docs/REVIEW_NOTES.md) and the [build audit](docs/BUILD_AUDIT.md).
 
 ## Provenance
 
@@ -104,3 +104,13 @@ The original archive included exercise prompts, starter code and student impleme
 No blanket open-source license has been assigned to teaching material whose ownership has not been confirmed.
 
 On Windows with a multi-configuration generator, build with `--config Debug`, test with `ctest --test-dir build -C Debug`, and use `build/Debug/<target>.exe`. Windows and macOS have not been verified in this review.
+
+## Irrigation demo
+
+A complete example with input files and menu instructions is provided in [examples/irrigation](examples/irrigation/README.md). The implementation follows the written exercise formula; the discrepancy with the historical sample is explained there.
+
+## Console input
+
+Small console exercises use `common/console.h` to stop with a diagnostic and exit status 1 on an incomplete or malformed scan, rather than continue with uninitialized values. String scans have finite widths and line draining handles EOF. This fail-fast path exits the process; it does not recover the interactive session. The irrigation menu instead validates full lines and prompts again.
+
+The entrypoint tests check termination, not each application's business rules. File parsers and application-specific valid-input scenarios have separate, varying test coverage.

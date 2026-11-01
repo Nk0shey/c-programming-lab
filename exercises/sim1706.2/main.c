@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 /******************************************************************************
 === MODULO 2 ===
 Appello di Fondamenti di Programmazione - A.A. 2025/26
@@ -566,11 +567,11 @@ int main(void) {
     }
 
     printf("Inserire priorita minima da salvare (BASSA/MEDIA/ALTA/CRITICA): ");
-    scanf("%15s", priorita_str);
+    lab_scanf("%15s", priorita_str);
     priorita_min = string_to_priorita(priorita_str);
 
     printf("Inserire tempo minimo di risoluzione in minuti: ");
-    scanf("%d", &minuti_min);
+    lab_scanf("%d", &minuti_min);
 
     if (statistiche != NULL) {
         if (salva_statistiche_filtrate(FILE_OUTPUT, statistiche, dim_statistiche,

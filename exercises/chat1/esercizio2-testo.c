@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 /*
   Sviluppo di applicazione in ANSI C per gestire le code di un ufficio
   postale.
@@ -232,7 +233,7 @@ int Menu()
 {
 int scelta = 0;
     printf("1 Carica | 2 Operazione | 3 Statistiche | 0 Esci: ");
-    if (scanf("%d", &scelta) != 1) return 0;
+    if (lab_scanf("%d", &scelta) != 1) return 0;
     return scelta;
 }
 
@@ -260,11 +261,11 @@ Coda code[3] = {{0}}; TListaOperazione lista = NULL;
     int scelta;
     while ((scelta = Menu()) != 0) {
         if (scelta == 1) {
-            char nome[256]; if (scanf("%255s", nome) != 1) break;
+            char nome[256]; if (lab_scanf("%255s", nome) != 1) break;
             printf("Caricamento: %d\n", CaricaOperazioni(nome, code));
             for (int i = 0; i < 3; ++i) VisualizzaCoda(code[i]);
         } else if (scelta == 2) {
-            char tipo[20]; if (scanf("%19s", tipo) != 1) break;
+            char tipo[20]; if (lab_scanf("%19s", tipo) != 1) break;
             int i = codifica(tipo);
             printf("Operazione: %d\n", i >= 0 ? Operazione(&code[i], tipo, &lista) : 0);
             Visualizzalista(lista);

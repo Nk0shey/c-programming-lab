@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -223,7 +224,7 @@ void LeggiDaFile(ABR* agenda) {
 	FILE* fp;
 
 	printf("Inserire il nome do arquivo: ");
-	scanf("%s", nome_file);
+	lab_scanf("%24s", nome_file);
 	fp = fopen(nome_file, "r");
 	if (fp != NULL) {
 		while (fscanf(fp, "%s %s %s %d\n", elem.cognome, elem.nome, elem.numero, &elem.tipo) != EOF) {
@@ -299,17 +300,17 @@ void InserisciPersona(ABR* agenda) {
 	int tipo;
 	printf("Inserisci nuovo numero: ");
 	printf("Inserisci cognome: ");
-	scanf("%s", elem.cognome);
+	lab_scanf("%-1s", elem.cognome);
 
 	printf("\nInserisci nome: ");
-	scanf("%s", elem.nome);
+	lab_scanf("%24s", elem.nome);
 
 
 	printf("\nInserisci numero:");
-	scanf("%s", elem.numero);
+	lab_scanf("%11s", elem.numero);
 	do {
 		printf("\nInserisci 0 per fisso, 1 per cellulare: ");
-		scanf("%d", &tipo);
+		lab_scanf("%d", &tipo);
 	} while ((tipo < 0) || (tipo > 1));
 	elem.tipo = tipo;
 
@@ -354,15 +355,15 @@ void ModificaNumero(ABR agenda) {
 
 	printf("\nModifica numero esistente");
 	printf("\nInserisci cognome: ");
-	scanf("%s", elem.cognome);
+	lab_scanf("%-1s", elem.cognome);
 	printf("\nInserisci nome: ");
-	scanf("%s", elem.nome);
+	lab_scanf("%24s", elem.nome);
 	printf("\nInserisci numero:");
-	scanf("%s", elem.numero);
+	lab_scanf("%11s", elem.numero);
 
 	do {
 		printf("\nInserisci 0 per fisso, 1 per cellulare: ");
-		scanf("%d", &tipo);
+		lab_scanf("%d", &tipo);
 	} while ((tipo < 0) || (tipo > 1));
 	elem.tipo = tipo;
 
@@ -443,7 +444,7 @@ void CercaPersonaDatoNumero(ABR albero) {
 	char numero[STR_LENGHT];
 	int trovato = 0;
 	printf("Inserisci numero: ");
-	scanf("%s", numero);
+	lab_scanf("%11s", numero);
 
 	trovato = CercaPersonaInAlbero(albero, numero);
 	if (!trovato) {
@@ -508,11 +509,11 @@ void ScriviSuFile(ABR albero) {
 	int tipo;
 	char nome_file[STR_LENGHT];
 	printf("\nInserisci nome file: ");
-	scanf("%s", nome_file);
+	lab_scanf("%24s", nome_file);
 	do {
 		printf("\nInserisci 0 per fisso, 1 per cellulare: ");
-		scanf("%d", &tipo);
-		while (getchar() != '\n');
+		lab_scanf("%d", &tipo);
+		lab_discard_line();
 	} while ((tipo < 0) || (tipo > 1));
 
 	ScriviVisitaSimmetrica(albero, nome_file, tipo);
@@ -555,8 +556,8 @@ int main(void) {
 		printf("\n0. Esci");
 		do {
 			printf("\n Inserisci scelta: ");
-			scanf("%d", &scelta);
-			while (getchar() != '\n');
+			lab_scanf("%d", &scelta);
+			lab_discard_line();
 		} while ((scelta < 0) || (scelta > 6));
 
 		switch (scelta) {

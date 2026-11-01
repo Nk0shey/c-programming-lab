@@ -1,3 +1,4 @@
+#include "../../common/console.h"
 /******************************************************************************
  Scrivere un programma ANSI C per la gestione di una coda di ordini.
     Ogni ordine è caratterizzato da un codice (intero positivo), da una lista di
@@ -360,10 +361,10 @@ int main(void) {
 CodaOrdini c={0}; int scelta=0;
     for (;;) {
         printf("1 Carica | 2 Stampa | 3 Filtra | 4 Quantita | 0 Esci: ");
-        if (scanf("%d",&scelta)!=1 || scelta==0) break;
-        if (scelta==1) { char file[256]; if (scanf("%255s",file)!=1) break; printf("Caricamento: %d\n",carica_file(file,&c)); }
+        if (lab_scanf("%d",&scelta)!=1 || scelta==0) break;
+        if (scelta==1) { char file[256]; if (lab_scanf("%255s",file)!=1) break; printf("Caricamento: %d\n",carica_file(file,&c)); }
         else if (scelta==2) stampa_ordini(c.primo_elemento);
-        else if (scelta==3) { char prodotto[STRLEN]; if (scanf("%63s",prodotto)!=1) break; ListaOrdini l=ordini_contenenti_prodotto(c,prodotto); stampa_ordini(l); dealloca_lista_ordini(l); }
+        else if (scelta==3) { char prodotto[STRLEN]; if (lab_scanf("%63s",prodotto)!=1) break; ListaOrdini l=ordini_contenenti_prodotto(c,prodotto); stampa_ordini(l); dealloca_lista_ordini(l); }
         else if (scelta==4) { int dim; int *v=numero_di_prodotti(c,&dim); if(v) { for(int i=0;i<dim;++i) printf("%d\n",v[i]); free(v); } }
     }
     while(c.primo_elemento) { NodoOrdine *n=c.primo_elemento; c.primo_elemento=n->successivo;

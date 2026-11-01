@@ -211,6 +211,7 @@ if(NOT MSVC)
   target_link_libraries(sim4_main PRIVATE m)
 endif()
 
+get_property(exercise_targets DIRECTORY PROPERTY BUILDSYSTEM_TARGETS)
 # Tests are C executables; CTest does not require Python.
 include(CTest)
 if(BUILD_TESTING)
@@ -230,4 +231,12 @@ if(BUILD_TESTING)
   endforeach()
   add_test(NAME matrix_output COMMAND project1_moltiplicazione_matrici)
   set_tests_properties(matrix_output PROPERTIES PASS_REGULAR_EXPRESSION "58 64.*139 154" TIMEOUT 5)
+  foreach(target IN LISTS exercise_targets)
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/test-work/smoke_${target}")
+    add_test(NAME smoke_${target} COMMAND "${CMAKE_COMMAND}"
+      "-DPROGRAM=$<TARGET_FILE:${target}>"
+      "-DWORK=${CMAKE_CURRENT_BINARY_DIR}/test-work/smoke_${target}"
+      -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/smoke_entrypoint.cmake")
+    set_tests_properties(smoke_${target} PROPERTIES TIMEOUT 12)
+  endforeach()
 endif()

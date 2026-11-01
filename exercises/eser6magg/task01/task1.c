@@ -1,3 +1,4 @@
+#include "../../../common/console.h"
 #include <stdio.h>
 #include "PilaSequenzialeStatica.h"
 
@@ -8,7 +9,7 @@ int main(void) {
 
     do {
         printf("Inserire un numero[negativo per terminare]: ");
-        scanf("%d", &nuovo_input);
+        lab_scanf("%d", &nuovo_input);
         if (Push(&pila, nuovo_input) == -1) {
             printf("Pila piena");
             return -1;
