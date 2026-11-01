@@ -17,32 +17,43 @@ Italian identifiers and original folder names are retained so the work remains t
 
 ## Build and run
 
-Requires Python 3 and a C11 compiler (`cc`, `gcc` or `clang`).
+Requires a C11 compiler (`cc`, `gcc` or `clang`) and CMake 3.16 or later. Python is not required to build or run the C programs.
+
+Build all exercises:
 
 ```sh
-python3 build.py
-python3 build.py --list
-python3 build.py alberi_ricercaAlbero
+cmake -S . -B build
+cmake --build build --parallel 2
+```
+
+Build and run one exercise:
+
+```sh
+cmake --build build --target alberi_ricercaAlbero
 ./build/alberi_ricercaAlbero
 ```
 
-Expected output for that demonstration:
+Expected output:
 
 ```text
 Elemento trovato: 57
 Altezza albero: 3
 ```
 
-Each exercise builds separately. Alternative CMake configuration is included, requiring CMake 3.16 or later:
+You can also compile this standalone example directly without CMake:
 
 ```sh
-cmake -S . -B build-cmake
-cmake --build build-cmake --parallel 2
+cc -std=c11 exercises/alberi/ricercaAlbero.c -o ricercaAlbero
+./ricercaAlbero
 ```
 
-The Python build has been verified on Linux. CMake was unavailable in the preparation environment, so that configuration has not been exercised.
+Exercises using separate implementation files must compile and link those files too; the CMake targets handle this automatically.
+
+All 48 programs were compiled individually on Linux. The CMake configuration has not yet been exercised in the preparation environment because CMake was unavailable there.
 
 ## Tests
+
+The optional test runner uses Python 3 to compile and execute the C regression tests. Python is a test-tool dependency only.
 
 ```sh
 python3 tests/run.py
