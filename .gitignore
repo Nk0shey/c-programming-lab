@@ -1,0 +1,22 @@
+# Generated builds
+/build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+*.o
+*.obj
+*.exe
+*.a
+*.so
+*.dylib
+# Local editor settings
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+# Local credentials
+.env
+.env.*
+!.env.example
+*.pem

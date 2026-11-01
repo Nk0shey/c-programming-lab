@@ -1,0 +1,290 @@
+[
+  {
+    "file": "alberi/esercizi.c",
+    "target": "alberi_esercizi",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "alberi/ricercaAlbero.c",
+    "target": "alberi_ricercaAlbero",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "chat1/esercizio2-testo.c",
+    "target": "chat1_esercizio2_testo",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "chat1/fdp_2026_07_13_M2new_turno1_test.c",
+    "target": "chat1_fdp_2026_07_13_M2new_turno1_test",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "chat1/simulazione_adt_vettori_liste_pile_code.c",
+    "target": "chat1_simulazione_adt_vettori_liste_pile_code",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "chat1/simulazione_centri_assistenza.c",
+    "target": "chat1_simulazione_centri_assistenza",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "chat1/testo.c",
+    "target": "chat1_testo",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "compiti anni precedenti/compito 5/testo.c",
+    "target": "compiti_anni_precedenti_compito_5_testo",
+    "status": "Builds",
+    "diagnostics": "exercises/compiti anni precedenti/compito 5/testo.c: In function \u2018calcola_e_costruisci_indice\u2019:\nexercises/compiti anni precedenti/compito 5/testo.c:426:13: warning: unused variable \u2018prob_pioggia\u2019 [-Wunused-variable]\n  426 |         int prob_pioggia = impianto->prob_pioggia;\n      |             ^~~~~~~~~~~~\nexercises/compiti anni precedenti/compito 5/testo.c: In function \u2018main\u2019:\nexercises/compiti anni precedenti/compito 5/testo.c:485:11: warning: unused variable \u2018nuovo_fattore\u2019 [-Wunused-variable]\n  485 |     float nuovo_fattore;\n      |           ^~~~~~~~~~~~~\nexercises/compiti anni precedenti/compito 5/testo.c:484:9: warning: unused variable \u2018nuovo_stato_int\u2019 [-Wunused-variable]\n  484 |     int nuovo_stato_int;\n      |         ^~~~~~~~~~~~~~~\nexercises/compiti anni precedenti/compito 5/testo.c:483:10: warning: unused variable \u2018buffer_codice\u2019 [-Wunused-variable]\n  483 |     char buffer_codice[MAX_CODICE];\n      |          ^~~~~~~~~~~~~\n"
+  },
+  {
+    "file": "compiti anni precedenti/compito 8/main.c",
+    "target": "compiti_anni_precedenti_compito_8_main",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "compiti anni precedenti/compito 9/main.c",
+    "target": "compiti_anni_precedenti_compito_9_main",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "compiti anni precedenti/compito2/main.c",
+    "target": "compiti_anni_precedenti_compito2_main",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "compiti anni precedenti/compito3/main.c",
+    "target": "compiti_anni_precedenti_compito3_main",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "compiti anni precedenti/compito4/main.c",
+    "target": "compiti_anni_precedenti_compito4_main",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "compiti anni precedenti/compito6/modulo2_testo.c",
+    "target": "compiti_anni_precedenti_compito6_modulo2_testo",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "compiti anni precedenti/compito7/Modulo2_Testo.c",
+    "target": "compiti_anni_precedenti_compito7_Modulo2_Testo",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "compiti anni precedenti/sim1/simulazione_m2_lineari_TODO.c",
+    "target": "compiti_anni_precedenti_sim1_simulazione_m2_lineari_TODO",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "compiti anni precedenti/sim_rec1/testo1.c",
+    "target": "compiti_anni_precedenti_sim_rec1_testo1",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "compiti anni precedenti/sim_rec22/main.c",
+    "target": "compiti_anni_precedenti_sim_rec22_main",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "es1/main.c",
+    "target": "es1_main",
+    "status": "Builds",
+    "diagnostics": "exercises/es1/main.c: In function \u2018totale_per_rider\u2019:\nexercises/es1/main.c:326:9: warning: unused variable \u2018somma\u2019 [-Wunused-variable]\n  326 |     int somma = 0;\n      |         ^~~~~\nexercises/es1/main.c: In function \u2018main\u2019:\nexercises/es1/main.c:519:13: warning: unused variable \u2018vettore_guadagni\u2019 [-Wunused-variable]\n  519 |     float * vettore_guadagni = NULL;\n      |             ^~~~~~~~~~~~~~~~\nexercises/es1/main.c:516:9: warning: unused variable \u2018numero_rider\u2019 [-Wunused-variable]\n  516 |     int numero_rider = 0;\n      |         ^~~~~~~~~~~~\n"
+  },
+  {
+    "file": "es2/main.c",
+    "target": "es2_main",
+    "status": "Builds",
+    "diagnostics": "exercises/es2/main.c: In function \u2018main\u2019:\nexercises/es2/main.c:352:17: warning: unused variable \u2018aux_prest\u2019 [-Wunused-variable]\n  352 |     TListaLibri aux_prest;\n      |                 ^~~~~~~~~\nexercises/es2/main.c:351:17: warning: unused variable \u2018aux_disp\u2019 [-Wunused-variable]\n  351 |     TListaLibri aux_disp;\n      |                 ^~~~~~~~\n"
+  },
+  {
+    "file": "es3/simulazione_m2_ticket.c",
+    "target": "es3_simulazione_m2_ticket",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "eser12magg/taxi.c",
+    "target": "eser12magg_taxi",
+    "status": "Builds",
+    "diagnostics": "exercises/eser12magg/taxi.c: In function \u2018main\u2019:\nexercises/eser12magg/taxi.c:419:12: warning: unused variable \u2018elem_taxi\u2019 [-Wunused-variable]\n  419 |     T_Taxi elem_taxi;\n      |            ^~~~~~~~~\n"
+  },
+  {
+    "file": "eser17apr/task01.c",
+    "target": "eser17apr_task01",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "eser17apr/task02.c",
+    "target": "eser17apr_task02",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "eser17apr/task03.c",
+    "target": "eser17apr_task03",
+    "status": "Builds",
+    "diagnostics": "exercises/eser17apr/task03.c: In function \u2018main\u2019:\nexercises/eser17apr/task03.c:330:15: warning: unused variable \u2018elem\u2019 [-Wunused-variable]\n  330 |         Libro elem;\n      |               ^~~~\n"
+  },
+  {
+    "file": "eser19magg/log_sito_web.c",
+    "target": "eser19magg_log_sito_web",
+    "status": "Builds",
+    "diagnostics": "exercises/eser19magg/log_sito_web.c: In function \u2018stampaAccessiPerUtente\u2019:\nexercises/eser19magg/log_sito_web.c:105:13: warning: unused variable \u2018i\u2019 [-Wunused-variable]\n  105 |         int i;\n      |             ^\n"
+  },
+  {
+    "file": "eser20magg/coda_ordini.c",
+    "target": "eser20magg_coda_ordini",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "eser3giugno/agenda_telefonica.c",
+    "target": "eser3giugno_agenda_telefonica",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "eser5giugno/testo.c",
+    "target": "eser5giugno_testo",
+    "status": "Builds",
+    "diagnostics": "exercises/eser5giugno/testo.c: In function \u2018main\u2019:\nexercises/eser5giugno/testo.c:441:17: warning: unused variable \u2018aux_prest\u2019 [-Wunused-variable]\n  441 |     TListaLibri aux_prest;\n      |                 ^~~~~~~~~\nexercises/eser5giugno/testo.c:440:17: warning: unused variable \u2018aux_disp\u2019 [-Wunused-variable]\n  440 |     TListaLibri aux_disp;\n      |                 ^~~~~~~~\n"
+  },
+  {
+    "file": "eser5magg/supermercato.c",
+    "target": "eser5magg_supermercato",
+    "status": "Builds",
+    "diagnostics": "exercises/eser5magg/supermercato.c: In function \u2018main\u2019:\nexercises/eser5magg/supermercato.c:312:20: warning: unused variable \u2018articolo\u2019 [-Wunused-variable]\n  312 |         T_Prodotto articolo;\n      |                    ^~~~~~~~\n"
+  },
+  {
+    "file": "eser6magg/task01/task1.c",
+    "target": "eser6magg_task01_task1",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "eser6magg/task02/task2.c",
+    "target": "eser6magg_task02_task2",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "eser6magg/task03/task3.c",
+    "target": "eser6magg_task03_task3",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "eser8magg/task01/task01.c",
+    "target": "eser8magg_task01_task01",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "eser8magg/task02-03/task02.c",
+    "target": "eser8magg_task02_03_task02",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "eser8magg/task02-03/task03.c",
+    "target": "eser8magg_task02_03_task03",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "eser9giugno/testo.c",
+    "target": "eser9giugno_testo",
+    "status": "Builds",
+    "diagnostics": "exercises/eser9giugno/testo.c: In function \u2018main\u2019:\nexercises/eser9giugno/testo.c:564:13: warning: unused variable \u2018vettore_guadagni\u2019 [-Wunused-variable]\n  564 |     float * vettore_guadagni = NULL;\n      |             ^~~~~~~~~~~~~~~~\nexercises/eser9giugno/testo.c:561:9: warning: unused variable \u2018numero_rider\u2019 [-Wunused-variable]\n  561 |     int numero_rider = 0;\n      |         ^~~~~~~~~~~~\n"
+  },
+  {
+    "file": "hw1/task1.c",
+    "target": "hw1_task1",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "hw1/task2.c",
+    "target": "hw1_task2",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "hw1/task3.c",
+    "target": "hw1_task3",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "hw1/task4.c",
+    "target": "hw1_task4",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "newSim1/main.c",
+    "target": "newSim1_main",
+    "status": "Builds",
+    "diagnostics": "exercises/newSim1/main.c: In function \u2018elabora_prossima_richiesta\u2019:\nexercises/newSim1/main.c:396:20: warning: unused variable \u2018temp\u2019 [-Wunused-variable]\n  396 |     NodoRichiesta *temp;\n      |                    ^~~~\nexercises/newSim1/main.c: In function \u2018ripristina_ultima_richiesta\u2019:\nexercises/newSim1/main.c:502:20: warning: unused variable \u2018temp\u2019 [-Wunused-variable]\n  502 |     NodoElaborata *temp;\n      |                    ^~~~\n"
+  },
+  {
+    "file": "project1/moltiplicazione_matrici.c",
+    "target": "project1_moltiplicazione_matrici",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "sim1706.2/main.c",
+    "target": "sim1706_2_main",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "sim24aug/simulazione_finale_adt_tutte_varianti.c",
+    "target": "sim24aug_simulazione_finale_adt_tutte_varianti",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "sim24aug/simulazione_m2_basi_droni.c",
+    "target": "sim24aug_simulazione_m2_basi_droni",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "sim3/main.c",
+    "target": "sim3_main",
+    "status": "Builds",
+    "diagnostics": ""
+  },
+  {
+    "file": "sim4/main.c",
+    "target": "sim4_main",
+    "status": "Builds",
+    "diagnostics": ""
+  }
+]
