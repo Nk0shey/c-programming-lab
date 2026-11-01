@@ -1,5 +1,8 @@
 # Generated builds
 /build/
+/build-*/
+__pycache__/
+*.pyc
 cmake-build-*/
 CMakeFiles/
 CMakeCache.txt

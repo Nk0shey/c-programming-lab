@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Run isolated C regression suites and executable checks; requires Python 3 and cc/gcc/clang."""
 import argparse
+import sys
 from pathlib import Path
 import shutil
 import subprocess
@@ -19,7 +20,9 @@ def main():
             binary=Path(d)/source.stem
             flags=['-std=c11','-Wall','-Wextra','-Wpedantic','-g']
             if args.sanitize: flags+=['-fsanitize=undefined','-fno-sanitize-recover=all']
-            if args.address: flags+=['-fsanitize=address','-fno-omit-frame-pointer','-no-pie']
+            if args.address:
+                flags+=['-fsanitize=address','-fno-omit-frame-pointer']
+                if sys.platform.startswith('linux'): flags+=['-no-pie']
             subprocess.run([cc,*flags,str(source),'-lm','-o',str(binary)],check=True,capture_output=True,text=True)
             result=subprocess.run([str(binary)],cwd=d,capture_output=True,text=True,timeout=10)
             if result.returncode:
@@ -27,7 +30,7 @@ def main():
             print('PASS',source.stem); count+=1
         source=ROOT/'exercises/project1/moltiplicazione_matrici.c'
         binary=Path(d)/'matrix'
-        subprocess.run([cc,'-std=c11','-fsanitize=undefined','-fno-sanitize-recover=all',str(source),'-o',str(binary)],check=True)
+        subprocess.run([cc,*flags,str(source),'-o',str(binary)],check=True)
         result=subprocess.run([str(binary)],capture_output=True,text=True,check=True,timeout=5)
         assert result.stdout.split()==['The','result','is:','58','64','139','154'],result.stdout
         print('PASS matrix output');count+=1

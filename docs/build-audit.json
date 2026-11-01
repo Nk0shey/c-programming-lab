@@ -171,7 +171,7 @@
     "file": "eser5giugno/testo.c",
     "target": "eser5giugno_testo",
     "status": "Builds",
-    "diagnostics": "exercises/eser5giugno/testo.c: In function \u2018main\u2019:\nexercises/eser5giugno/testo.c:441:17: warning: unused variable \u2018aux_prest\u2019 [-Wunused-variable]\n  441 |     TListaLibri aux_prest;\n      |                 ^~~~~~~~~\nexercises/eser5giugno/testo.c:440:17: warning: unused variable \u2018aux_disp\u2019 [-Wunused-variable]\n  440 |     TListaLibri aux_disp;\n      |                 ^~~~~~~~\n"
+    "diagnostics": "exercises/eser5giugno/testo.c: In function \u2018main\u2019:\nexercises/eser5giugno/testo.c:386:17: warning: unused variable \u2018aux_prest\u2019 [-Wunused-variable]\n  386 |     TListaLibri aux_prest;\n      |                 ^~~~~~~~~\nexercises/eser5giugno/testo.c:385:17: warning: unused variable \u2018aux_disp\u2019 [-Wunused-variable]\n  385 |     TListaLibri aux_disp;\n      |                 ^~~~~~~~\n"
   },
   {
     "file": "eser5magg/supermercato.c",
@@ -219,7 +219,7 @@
     "file": "eser9giugno/testo.c",
     "target": "eser9giugno_testo",
     "status": "Builds",
-    "diagnostics": "exercises/eser9giugno/testo.c: In function \u2018main\u2019:\nexercises/eser9giugno/testo.c:564:13: warning: unused variable \u2018vettore_guadagni\u2019 [-Wunused-variable]\n  564 |     float * vettore_guadagni = NULL;\n      |             ^~~~~~~~~~~~~~~~\nexercises/eser9giugno/testo.c:561:9: warning: unused variable \u2018numero_rider\u2019 [-Wunused-variable]\n  561 |     int numero_rider = 0;\n      |         ^~~~~~~~~~~~\n"
+    "diagnostics": "exercises/eser9giugno/testo.c: In function \u2018main\u2019:\nexercises/eser9giugno/testo.c:543:13: warning: unused variable \u2018vettore_guadagni\u2019 [-Wunused-variable]\n  543 |     float * vettore_guadagni = NULL;\n      |             ^~~~~~~~~~~~~~~~\nexercises/eser9giugno/testo.c:540:9: warning: unused variable \u2018numero_rider\u2019 [-Wunused-variable]\n  540 |     int numero_rider = 0;\n      |         ^~~~~~~~~~~~\n"
   },
   {
     "file": "hw1/task1.c",
@@ -249,7 +249,7 @@
     "file": "newSim1/main.c",
     "target": "newSim1_main",
     "status": "Builds",
-    "diagnostics": "exercises/newSim1/main.c: In function \u2018elabora_prossima_richiesta\u2019:\nexercises/newSim1/main.c:396:20: warning: unused variable \u2018temp\u2019 [-Wunused-variable]\n  396 |     NodoRichiesta *temp;\n      |                    ^~~~\nexercises/newSim1/main.c: In function \u2018ripristina_ultima_richiesta\u2019:\nexercises/newSim1/main.c:502:20: warning: unused variable \u2018temp\u2019 [-Wunused-variable]\n  502 |     NodoElaborata *temp;\n      |                    ^~~~\n"
+    "diagnostics": "exercises/newSim1/main.c: In function \u2018elabora_prossima_richiesta\u2019:\nexercises/newSim1/main.c:362:20: warning: unused variable \u2018temp\u2019 [-Wunused-variable]\n  362 |     NodoRichiesta *temp;\n      |                    ^~~~\nexercises/newSim1/main.c: In function \u2018ripristina_ultima_richiesta\u2019:\nexercises/newSim1/main.c:468:20: warning: unused variable \u2018temp\u2019 [-Wunused-variable]\n  468 |     NodoElaborata *temp;\n      |                    ^~~~\n"
   },
   {
     "file": "project1/moltiplicazione_matrici.c",

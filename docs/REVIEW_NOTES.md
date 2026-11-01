@@ -8,12 +8,12 @@ Tests run against the revised implementations, not the original archive. A passi
 
 ## Regression coverage
 
-The automated runner covers linked ADT transfers and duplicate insertion, nested stacks/queues, circular-queue wraparound, delivery-client aggregation, book filtering/indexing/deletion, hospital-room collisions, phone-tree lookup/cleanup, weather-tree cleanup, lab request processing, postal FIFO operations, scooter transfers, taxi transitions/statistics, parcel-centre loading, ticket filtering, warehouse extraction, device periods across midnight and exact matrix output.
+The automated CTest suite covers linked ADT transfers and duplicate insertion, nested stacks/queues, circular-queue wraparound, delivery-client aggregation, book filtering/indexing/deletion, hospital-room collisions, phone-tree lookup/cleanup, weather-tree cleanup, lab request processing, postal FIFO operations, scooter transfers, taxi transitions/statistics, parcel-centre loading, ticket filtering, warehouse extraction, device periods across midnight and exact matrix output.
 
 ## Environment and remaining limits
 
-- GCC 13.3.0 on Linux; the Python build was verified for all 48 programs.
-- CMake configuration supplied but not executed because CMake was unavailable.
+- GCC 13.3.0 on Linux; the CMake build was verified for all 48 programs.
+- CMake configuration, native CTest workflow and the sanitizer-enabled CTest workflow were executed successfully.
 - Regression harnesses passed with UndefinedBehaviorSanitizer and AddressSanitizer. Leak detection was disabled because LeakSanitizer cannot inspect processes in this environment. Do not interpret this as a full leak audit.
 - Compiler warnings remaining in legacy exercises are recorded in BUILD_AUDIT.md.
 - Not every original loader, menu, malformed-input path, allocation failure or exercise specification has been functionally verified. Original training comments and alternative solutions are retained in places.
@@ -21,3 +21,5 @@ The automated runner covers linked ADT transfers and duplicate insertion, nested
 - Sources containing teaching prompts and starter code should be reviewed for ownership before public licensing.
 
 This repository is suitable for continued academic development. A finished portfolio application should be selected and tested against its complete requirements separately.
+
+The follow-up review is recorded in [AUDIT.md](AUDIT.md). The redundant root Python build script was removed; the Python test runner remains an optional alternative.

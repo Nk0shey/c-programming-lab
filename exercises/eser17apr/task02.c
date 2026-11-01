@@ -47,12 +47,8 @@ int cons(List *l, TipoElemLista elem) {
 }
 
 void CancellaLista(List *l) {
-    List aux;
-    while (l != NULL) {
-        aux = *l;
-        *l = (*l) -> next;
-        free(aux);
-    }
+if (!l) return;
+    while (*l) { List n = *l; *l = n->next; free(n); }
 }
 
 void stampaLista(List l) {

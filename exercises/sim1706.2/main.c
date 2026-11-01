@@ -452,17 +452,19 @@ QUESITO 3 - CALCOLO TEMPI DI RISOLUZIONE
 */
 statistica_ticket_t *calcola_tempi_risoluzione(lista_categorie_t lista, int *dim_out) {
     // TODO: Da implementare a cura dello studente
-    if (lista == NULL || dim_out == NULL) return NULL;
+    if (dim_out == NULL) return NULL;
     *dim_out = 0;
+    if (lista == NULL) return NULL;
     int i = 0;
     for (nodo_categoria_t *c = lista; c != NULL; c = c->next) {
         for (nodo_evento_ticket_t *e = c->info.eventi.primo; e != NULL; e = e->next) {
-            if (e->info.stato == APERTO) {
+            if (e->info.stato == APERTO && cerca_evento_chiusura(e->next, e->info.id_ticket)) {
                 i++;
             }
         }
     }
 
+    if (i == 0) return NULL;
     statistica_ticket_t *v = malloc(sizeof(statistica_ticket_t) * i);
     if (v == NULL) return NULL;
     *dim_out = i;

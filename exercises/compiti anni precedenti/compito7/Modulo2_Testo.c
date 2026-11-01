@@ -233,7 +233,10 @@ ListaClienti operazioni_lunghe(Cassa *casse, int dim, float tempo_minimo) {
         while (aux != NULL) {
             if (aux->cliente.tempo_stimato > tempo_minimo) {
                 nuovo = (NodoCliente*)malloc(sizeof(NodoCliente));
-                if (!nuovo) return NULL;
+                if (!nuovo) {
+                    while (lista) { NodoCliente *n = lista; lista = n->succ; free(n); }
+                    return NULL;
+                }
                 nuovo->cliente = aux->cliente;
                 nuovo->succ = lista;
                 lista = nuovo;

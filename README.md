@@ -49,25 +49,31 @@ cc -std=c11 exercises/alberi/ricercaAlbero.c -o ricercaAlbero
 
 Exercises using separate implementation files must compile and link those files too; the CMake targets handle this automatically.
 
-All 48 programs were compiled individually on Linux. The CMake configuration has not yet been exercised in the preparation environment because CMake was unavailable there.
+All 48 programs were compiled individually on Linux. CMake configuration and the full build have been verified on Linux with GCC 13.3.0.
 
 ## Tests
 
-The optional test runner uses Python 3 to compile and execute the C regression tests. Python is a test-tool dependency only.
+The primary test workflow uses CMake and CTest, with no Python dependency:
 
 ```sh
-python3 tests/run.py
-python3 tests/run.py --sanitize
-python3 tests/run.py --sanitize --address
+cmake -S . -B build
+cmake --build build --parallel 2
+ctest --test-dir build --output-on-failure
 ```
 
-The regression runner compiles isolated harnesses and executes them in a temporary directory. Tests cover empty structures, FIFO/LIFO order, transfer and deletion, filtering, statistics, file loading and the corrected matrix result. `--sanitize` enables UndefinedBehaviorSanitizer; `--address` adds AddressSanitizer. These options require a supporting GCC/Clang toolchain.
+27 checks cover data-structure operations, cleanup, FIFO/LIFO ordering, filtering, sorting ties, invalid file input, closed-ticket statistics and exact matrix output. Each regression test has an isolated working directory and keeps assertions enabled in Release builds.
 
-The preparation environment does not support LeakSanitizer's process inspection; the address-sanitizer run used:
+Optional memory and undefined-behaviour checks with GCC or Clang:
 
 ```sh
-ASAN_OPTIONS=detect_leaks=0 python3 tests/run.py --sanitize --address
+cmake -S . -B build-sanitize -DENABLE_SANITIZERS=ON
+cmake --build build-sanitize --parallel 2
+ctest --test-dir build-sanitize --output-on-failure
 ```
+
+Where LeakSanitizer cannot inspect processes (as in the preparation environment), use `ASAN_OPTIONS=detect_leaks=0` before the CTest command. Address and undefined-behaviour checks remain enabled; this does not verify leak freedom.
+
+The optional `python3 tests/run.py` runner is also available. Python is needed only for that alternative runner. Use `-DBUILD_TESTING=OFF` to build exercises without the regression executables.
 
 ## Navigate
 
@@ -89,10 +95,12 @@ ASAN_OPTIONS=detect_leaks=0 python3 tests/run.py --sanitize --address
 
 Many programs expect text input files in their current working directory. Original datasets were not included outside IDE-generated build folders. Source comments describe the exercise-specific formats; regression tests create synthetic data for their own checks. Run file-based programs in a temporary directory because some write output files.
 
-All 48 programs compile and link after this correction pass. See [review notes](docs/REVIEW_NOTES.md) and the [build audit](docs/BUILD_AUDIT.md).
+All 48 programs compile and link on the verified Linux toolchain. Passing compilation and 27 regression checks does not establish correctness of every exercise or interactive path. See the [repository audit](docs/AUDIT.md), [review notes](docs/REVIEW_NOTES.md) and the [build audit](docs/BUILD_AUDIT.md).
 
 ## Provenance
 
 The original archive included exercise prompts, starter code and student implementations. Individual authorship of supplied teaching scaffolds has not been established. The correction pass completed identified empty function stubs, repaired identified defects, added regression tests and prepared build/documentation files. See [changes](docs/CHANGES.md). The original upload remains separate; this repository contains the revised working versions.
 
 No blanket open-source license has been assigned to teaching material whose ownership has not been confirmed.
+
+On Windows with a multi-configuration generator, build with `--config Debug`, test with `ctest --test-dir build -C Debug`, and use `build/Debug/<target>.exe`. Windows and macOS have not been verified in this review.

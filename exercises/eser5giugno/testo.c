@@ -93,33 +93,18 @@ int AggiungiLibro(TListaLibri* plis, TLibro elem) {
 int CaricaLibri(char* nome_file,
     TListaLibri* disponibili,
     TListaLibri* prestati) {
-    // Implementare il corpo della funzione
-
-    TLibro elem;
-    FILE *fp;
-    fp = fopen(nome_file, "r");
-    char stato[15];
-    if (fp == NULL) {
-        printf("\nErrore apertura file");
-        return 0;
+FILE *fp = fopen(nome_file,"r"); if (!fp) return 0;
+    TLibro b; char stato[15]; int n,ok = 1;
+    /* Record order used by this exercise: code genre title cost state. */
+    while ((n=fscanf(fp,"%7s %15s %63s %f %14s",b.codice,b.genere,b.titolo,&b.costo,stato)) == 5) {
+        TListaLibri *dest;
+        if (!strcmp(stato,"disponibile")) dest = disponibili;
+        else if (!strcmp(stato,"prestato")) dest = prestati;
+        else { ok = 0; break; }
+        if (!AggiungiLibro(dest,b)) { ok = 0; break; }
     }
-
-    while (fscanf(fp, "%7s %15s %63s %f %14s\n", elem.codice,
-            elem.genere,
-            elem.titolo,
-            &elem.costo,
-            stato) == 5) {
-        if (strcmp(stato, "disponibile") == 0) {
-            AggiungiLibro(disponibili, elem);
-        } else if (strcmp(stato, "prestato") == 0) {
-            AggiungiLibro(prestati, elem);
-        } else {
-            printf("\nErrore stato libro");
-            break;
-        }
-    }
-    fclose(fp);
-    return 1;
+    if (n != EOF || ferror(fp)) ok = 0;
+    fclose(fp); return ok;
 }
 
 /*
@@ -172,22 +157,9 @@ void CancellaLibro(TListaLibri* lis, char* codice) {
 
 int Prestito(char* codice, TListaLibri* disponibili,
     TListaLibri* prestati) {
-    // Implementare il corpo della funzione
-
-    TListaLibri aux = *disponibili;
-    int esito = 0;
-    while (aux != NULL) {
-        if (strcmp(aux->info.codice, codice) == 0) {
-            esito = 1;
-            AggiungiLibro(prestati, aux->info);
-            break;
-        }
-        aux = aux->next;
-    }
-    if (esito == 1) {
-        CancellaLibro(disponibili, codice);
-    }
-    return esito;
+while (*disponibili && strcmp((*disponibili)->info.codice,codice)) disponibili = &(*disponibili)->next;
+    if (!*disponibili) return 0;
+    TListaLibri n = *disponibili; *disponibili = n->next; n->next = *prestati; *prestati = n; return 1;
 }
 
 /*
@@ -208,24 +180,12 @@ int Prestito(char* codice, TListaLibri* disponibili,
   TLibro* - vettore deli libri selezionate
 */
 TLibro* EstraiLibriDiInteresse(TListaLibri lis, float max_costo, char* genere, int* dim) {
-    // Implementare il corpo della funzione
-    int i = 0;
-    TListaLibri aux = lis;
-    *dim = 0;
-    while (aux != NULL) {
-        if ((strcmp(aux->info.genere, genere) == 0) && (aux->info.costo <= max_costo)) {
-            (*dim)++;
-        } aux = aux->next;
-    }
-
-    TLibro *vettore = malloc(sizeof(TLibro)*(*dim));
-    aux = lis;
-    while (aux != NULL) {
-        if ((strcmp(aux->info.genere, genere) == 0) && (aux->info.costo <= max_costo)) {
-            vettore[i++]=aux->info;
-        } aux = aux->next;
-    }
-    return vettore;
+*dim = 0;
+    for (TListaLibri n = lis; n; n = n->next) if (n->info.costo <= max_costo && !strcmp(n->info.genere,genere)) ++*dim;
+    if (!*dim) return NULL;
+    TLibro *v = malloc((size_t)*dim*sizeof *v); if (!v) { *dim = 0; return NULL; }
+    int i = 0; for (; lis; lis=lis->next) if (lis->info.costo <= max_costo && !strcmp(lis->info.genere,genere)) v[i++] = lis->info;
+    return v;
 }
 
 
@@ -408,27 +368,12 @@ int Menu() {
 }
 
 void DeallocaLista(TListaLibri *lista) {
-    // Implementare il corpo della funzione
-    TListaLibri aux;
-    while (*lista != NULL) {
-        aux = *lista;
-        *lista = (*lista)->next;
-        free(aux);
-    }
-
+while (*lista) { TListaLibri n=*lista; *lista=n->next; free(n); }
 }
 
 void DeallocaAlbero(TAlberoLibri* albero) {
-    // Implementare il corpo della funzione
-    if (*albero != NULL) {
-        if ((*albero)->sinistro !=NULL) {
-            DeallocaAlbero(&(*albero)->sinistro);
-        }
-        if ((*albero)->destro !=NULL) {
-            DeallocaAlbero(&(*albero)->destro);
-        }
-        free(*albero);
-    }
+if (!*albero) return;
+    DeallocaAlbero(&(*albero)->sinistro); DeallocaAlbero(&(*albero)->destro); free(*albero); *albero=NULL;
 }
 
 

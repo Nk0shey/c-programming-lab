@@ -255,66 +255,32 @@ void stampa_laboratori(const Laboratorio *laboratori,
  */
 Laboratorio *carica_laboratori(const char *nome_file,
                                unsigned *num_laboratori) {
-    /* TODO QUESITO 1 */
-    if (!nome_file) return NULL;
+if (!nome_file || !num_laboratori) return NULL;
     *num_laboratori = 0;
-
-    FILE *fp = fopen(nome_file, "r");
-    if (fp == NULL) return NULL;
-
-    if (fscanf(fp, "%u", &(*num_laboratori)) != 1) {
-        *num_laboratori = 0;
-        fclose(fp);
-        return NULL;
+    FILE *fp = fopen(nome_file, "r"); if (!fp) return NULL;
+    unsigned count = 0, requests;
+    Laboratorio *labs = NULL;
+    if (fscanf(fp, "%u", &count) != 1 || !count || count > 10000) goto fail;
+    labs = calloc(count, sizeof *labs); if (!labs) goto fail;
+    for (unsigned i = 0; i < count; ++i) {
+        if (fscanf(fp, "%31s", labs[i].codice_lab) != 1) goto fail;
+        for (unsigned j = 0; j < i; ++j) if (!strcmp(labs[i].codice_lab, labs[j].codice_lab)) goto fail;
     }
-
-    Laboratorio *l = malloc((*num_laboratori) * sizeof(Laboratorio));
-    if (l == NULL) {
-        *num_laboratori = 0;
-        fclose(fp);
-        return NULL;
+    if (fscanf(fp, "%u", &requests) != 1) goto fail;
+    for (unsigned i = 0; i < requests; ++i) {
+        Richiesta r; char lab[STR_LEN], category[STR_LEN];
+        if (fscanf(fp, "%31s %31s %31s %31s %d %d", lab, r.codice_richiesta, r.matricola, category, &r.priorita, &r.durata_stimata) != 6) goto fail;
+        r.categoria = string_to_categoria(category);
+        int index = cerca_indice_laboratorio(labs, count, lab);
+        if (index < 0 || r.categoria == CAT_NON_VALIDA || r.durata_stimata < 0 || !accoda_richiesta(&labs[index].coda, r)) goto fail;
     }
-
-    for (unsigned i = 0; i < (*num_laboratori); i++) {
-        if (fscanf(fp, "%s", l[i].codice_lab) != 1) {
-            free(l);
-            fclose(fp);
-            *num_laboratori = 0;
-            return NULL;
-        }
-        inizializza_coda(&l[i].coda);
-    }
-
-    Richiesta r;
-    unsigned num_richieste = 0;
-    char codice_lab[STR_LEN];
-    char categoria[STR_LEN];
-    if (fscanf(fp, "%u", &num_richieste) != 1) {
-        free(l);
-        *num_laboratori = 0;
-        fclose(fp);
-        return NULL;
-    }
-
-    for (unsigned i = 0; i < num_richieste; i++) {
-        if (fscanf(fp, "%s %s %s %s %d %d", codice_lab, r.codice_richiesta, r.matricola, categoria, &r.priorita, &r.durata_stimata) != 6) {
-            fclose(fp);
-            return NULL;
-        }
-        r.categoria = string_to_categoria(categoria);
-        int indice = cerca_indice_laboratorio(l, *num_laboratori, codice_lab);
-        if (indice == -1) {
-            fclose(fp);
-            return NULL;
-        }
-
-        if (accoda_richiesta(&l[indice].coda, r) != 1) {
-            free(l);
-            fclose(fp);
-        }
-    }
-    fclose(fp);
-    return l;
+    fclose(fp); *num_laboratori = count; return labs;
+fail:
+    if (labs) { for (unsigned i = 0; i < count; ++i) {
+        NodoRichiesta *n = labs[i].coda.primo;
+        while (n) { NodoRichiesta *next = n->next; free(n); n = next; }
+    } free(labs); }
+    fclose(fp); return NULL;
 }
 
 /* ========================================================================== */

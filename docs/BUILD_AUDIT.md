@@ -1,52 +1,52 @@
-# Compilation audit after corrections
+# Compilation audit
 
-48 standalone programs compiled and linked with GCC 13.3.0 on Linux using C11, `-Wall -Wextra -Wpedantic`. Some legacy warnings remain and are reproduced below. CMake is supplied but was not available in the preparation environment; the Python build was verified. Compilation does not prove all program paths correct.
+48 standalone C11 programs compiled with GCC 13.3.0, `-Wall -Wextra -Wpedantic`. CMake and CTest were executed successfully. See AUDIT.md for runtime coverage and remaining work. This JSON/Markdown audit is report data; the build reads CMakeLists.txt.
 
 ## `alberi/esercizi.c`
 
-Builds — target `alberi_esercizi`
+Target: `alberi_esercizi`. Build passed.
 
 No compiler diagnostics.
 
 ## `alberi/ricercaAlbero.c`
 
-Builds — target `alberi_ricercaAlbero`
+Target: `alberi_ricercaAlbero`. Build passed.
 
 No compiler diagnostics.
 
 ## `chat1/esercizio2-testo.c`
 
-Builds — target `chat1_esercizio2_testo`
+Target: `chat1_esercizio2_testo`. Build passed.
 
 No compiler diagnostics.
 
 ## `chat1/fdp_2026_07_13_M2new_turno1_test.c`
 
-Builds — target `chat1_fdp_2026_07_13_M2new_turno1_test`
+Target: `chat1_fdp_2026_07_13_M2new_turno1_test`. Build passed.
 
 No compiler diagnostics.
 
 ## `chat1/simulazione_adt_vettori_liste_pile_code.c`
 
-Builds — target `chat1_simulazione_adt_vettori_liste_pile_code`
+Target: `chat1_simulazione_adt_vettori_liste_pile_code`. Build passed.
 
 No compiler diagnostics.
 
 ## `chat1/simulazione_centri_assistenza.c`
 
-Builds — target `chat1_simulazione_centri_assistenza`
+Target: `chat1_simulazione_centri_assistenza`. Build passed.
 
 No compiler diagnostics.
 
 ## `chat1/testo.c`
 
-Builds — target `chat1_testo`
+Target: `chat1_testo`. Build passed.
 
 No compiler diagnostics.
 
 ## `compiti anni precedenti/compito 5/testo.c`
 
-Builds — target `compiti_anni_precedenti_compito_5_testo`
+Target: `compiti_anni_precedenti_compito_5_testo`. Build passed.
 
 ```text
 exercises/compiti anni precedenti/compito 5/testo.c: In function ‘calcola_e_costruisci_indice’:
@@ -67,67 +67,67 @@ exercises/compiti anni precedenti/compito 5/testo.c:483:10: warning: unused vari
 
 ## `compiti anni precedenti/compito 8/main.c`
 
-Builds — target `compiti_anni_precedenti_compito_8_main`
+Target: `compiti_anni_precedenti_compito_8_main`. Build passed.
 
 No compiler diagnostics.
 
 ## `compiti anni precedenti/compito 9/main.c`
 
-Builds — target `compiti_anni_precedenti_compito_9_main`
+Target: `compiti_anni_precedenti_compito_9_main`. Build passed.
 
 No compiler diagnostics.
 
 ## `compiti anni precedenti/compito2/main.c`
 
-Builds — target `compiti_anni_precedenti_compito2_main`
+Target: `compiti_anni_precedenti_compito2_main`. Build passed.
 
 No compiler diagnostics.
 
 ## `compiti anni precedenti/compito3/main.c`
 
-Builds — target `compiti_anni_precedenti_compito3_main`
+Target: `compiti_anni_precedenti_compito3_main`. Build passed.
 
 No compiler diagnostics.
 
 ## `compiti anni precedenti/compito4/main.c`
 
-Builds — target `compiti_anni_precedenti_compito4_main`
+Target: `compiti_anni_precedenti_compito4_main`. Build passed.
 
 No compiler diagnostics.
 
 ## `compiti anni precedenti/compito6/modulo2_testo.c`
 
-Builds — target `compiti_anni_precedenti_compito6_modulo2_testo`
+Target: `compiti_anni_precedenti_compito6_modulo2_testo`. Build passed.
 
 No compiler diagnostics.
 
 ## `compiti anni precedenti/compito7/Modulo2_Testo.c`
 
-Builds — target `compiti_anni_precedenti_compito7_Modulo2_Testo`
+Target: `compiti_anni_precedenti_compito7_Modulo2_Testo`. Build passed.
 
 No compiler diagnostics.
 
 ## `compiti anni precedenti/sim1/simulazione_m2_lineari_TODO.c`
 
-Builds — target `compiti_anni_precedenti_sim1_simulazione_m2_lineari_TODO`
+Target: `compiti_anni_precedenti_sim1_simulazione_m2_lineari_TODO`. Build passed.
 
 No compiler diagnostics.
 
 ## `compiti anni precedenti/sim_rec1/testo1.c`
 
-Builds — target `compiti_anni_precedenti_sim_rec1_testo1`
+Target: `compiti_anni_precedenti_sim_rec1_testo1`. Build passed.
 
 No compiler diagnostics.
 
 ## `compiti anni precedenti/sim_rec22/main.c`
 
-Builds — target `compiti_anni_precedenti_sim_rec22_main`
+Target: `compiti_anni_precedenti_sim_rec22_main`. Build passed.
 
 No compiler diagnostics.
 
 ## `es1/main.c`
 
-Builds — target `es1_main`
+Target: `es1_main`. Build passed.
 
 ```text
 exercises/es1/main.c: In function ‘totale_per_rider’:
@@ -145,7 +145,7 @@ exercises/es1/main.c:516:9: warning: unused variable ‘numero_rider’ [-Wunuse
 
 ## `es2/main.c`
 
-Builds — target `es2_main`
+Target: `es2_main`. Build passed.
 
 ```text
 exercises/es2/main.c: In function ‘main’:
@@ -159,13 +159,13 @@ exercises/es2/main.c:351:17: warning: unused variable ‘aux_disp’ [-Wunused-v
 
 ## `es3/simulazione_m2_ticket.c`
 
-Builds — target `es3_simulazione_m2_ticket`
+Target: `es3_simulazione_m2_ticket`. Build passed.
 
 No compiler diagnostics.
 
 ## `eser12magg/taxi.c`
 
-Builds — target `eser12magg_taxi`
+Target: `eser12magg_taxi`. Build passed.
 
 ```text
 exercises/eser12magg/taxi.c: In function ‘main’:
@@ -176,19 +176,19 @@ exercises/eser12magg/taxi.c:419:12: warning: unused variable ‘elem_taxi’ [-W
 
 ## `eser17apr/task01.c`
 
-Builds — target `eser17apr_task01`
+Target: `eser17apr_task01`. Build passed.
 
 No compiler diagnostics.
 
 ## `eser17apr/task02.c`
 
-Builds — target `eser17apr_task02`
+Target: `eser17apr_task02`. Build passed.
 
 No compiler diagnostics.
 
 ## `eser17apr/task03.c`
 
-Builds — target `eser17apr_task03`
+Target: `eser17apr_task03`. Build passed.
 
 ```text
 exercises/eser17apr/task03.c: In function ‘main’:
@@ -199,7 +199,7 @@ exercises/eser17apr/task03.c:330:15: warning: unused variable ‘elem’ [-Wunus
 
 ## `eser19magg/log_sito_web.c`
 
-Builds — target `eser19magg_log_sito_web`
+Target: `eser19magg_log_sito_web`. Build passed.
 
 ```text
 exercises/eser19magg/log_sito_web.c: In function ‘stampaAccessiPerUtente’:
@@ -210,33 +210,33 @@ exercises/eser19magg/log_sito_web.c:105:13: warning: unused variable ‘i’ [-W
 
 ## `eser20magg/coda_ordini.c`
 
-Builds — target `eser20magg_coda_ordini`
+Target: `eser20magg_coda_ordini`. Build passed.
 
 No compiler diagnostics.
 
 ## `eser3giugno/agenda_telefonica.c`
 
-Builds — target `eser3giugno_agenda_telefonica`
+Target: `eser3giugno_agenda_telefonica`. Build passed.
 
 No compiler diagnostics.
 
 ## `eser5giugno/testo.c`
 
-Builds — target `eser5giugno_testo`
+Target: `eser5giugno_testo`. Build passed.
 
 ```text
 exercises/eser5giugno/testo.c: In function ‘main’:
-exercises/eser5giugno/testo.c:441:17: warning: unused variable ‘aux_prest’ [-Wunused-variable]
-  441 |     TListaLibri aux_prest;
+exercises/eser5giugno/testo.c:386:17: warning: unused variable ‘aux_prest’ [-Wunused-variable]
+  386 |     TListaLibri aux_prest;
       |                 ^~~~~~~~~
-exercises/eser5giugno/testo.c:440:17: warning: unused variable ‘aux_disp’ [-Wunused-variable]
-  440 |     TListaLibri aux_disp;
+exercises/eser5giugno/testo.c:385:17: warning: unused variable ‘aux_disp’ [-Wunused-variable]
+  385 |     TListaLibri aux_disp;
       |                 ^~~~~~~~
 ```
 
 ## `eser5magg/supermercato.c`
 
-Builds — target `eser5magg_supermercato`
+Target: `eser5magg_supermercato`. Build passed.
 
 ```text
 exercises/eser5magg/supermercato.c: In function ‘main’:
@@ -247,126 +247,126 @@ exercises/eser5magg/supermercato.c:312:20: warning: unused variable ‘articolo�
 
 ## `eser6magg/task01/task1.c`
 
-Builds — target `eser6magg_task01_task1`
+Target: `eser6magg_task01_task1`. Build passed.
 
 No compiler diagnostics.
 
 ## `eser6magg/task02/task2.c`
 
-Builds — target `eser6magg_task02_task2`
+Target: `eser6magg_task02_task2`. Build passed.
 
 No compiler diagnostics.
 
 ## `eser6magg/task03/task3.c`
 
-Builds — target `eser6magg_task03_task3`
+Target: `eser6magg_task03_task3`. Build passed.
 
 No compiler diagnostics.
 
 ## `eser8magg/task01/task01.c`
 
-Builds — target `eser8magg_task01_task01`
+Target: `eser8magg_task01_task01`. Build passed.
 
 No compiler diagnostics.
 
 ## `eser8magg/task02-03/task02.c`
 
-Builds — target `eser8magg_task02_03_task02`
+Target: `eser8magg_task02_03_task02`. Build passed.
 
 No compiler diagnostics.
 
 ## `eser8magg/task02-03/task03.c`
 
-Builds — target `eser8magg_task02_03_task03`
+Target: `eser8magg_task02_03_task03`. Build passed.
 
 No compiler diagnostics.
 
 ## `eser9giugno/testo.c`
 
-Builds — target `eser9giugno_testo`
+Target: `eser9giugno_testo`. Build passed.
 
 ```text
 exercises/eser9giugno/testo.c: In function ‘main’:
-exercises/eser9giugno/testo.c:564:13: warning: unused variable ‘vettore_guadagni’ [-Wunused-variable]
-  564 |     float * vettore_guadagni = NULL;
+exercises/eser9giugno/testo.c:543:13: warning: unused variable ‘vettore_guadagni’ [-Wunused-variable]
+  543 |     float * vettore_guadagni = NULL;
       |             ^~~~~~~~~~~~~~~~
-exercises/eser9giugno/testo.c:561:9: warning: unused variable ‘numero_rider’ [-Wunused-variable]
-  561 |     int numero_rider = 0;
+exercises/eser9giugno/testo.c:540:9: warning: unused variable ‘numero_rider’ [-Wunused-variable]
+  540 |     int numero_rider = 0;
       |         ^~~~~~~~~~~~
 ```
 
 ## `hw1/task1.c`
 
-Builds — target `hw1_task1`
+Target: `hw1_task1`. Build passed.
 
 No compiler diagnostics.
 
 ## `hw1/task2.c`
 
-Builds — target `hw1_task2`
+Target: `hw1_task2`. Build passed.
 
 No compiler diagnostics.
 
 ## `hw1/task3.c`
 
-Builds — target `hw1_task3`
+Target: `hw1_task3`. Build passed.
 
 No compiler diagnostics.
 
 ## `hw1/task4.c`
 
-Builds — target `hw1_task4`
+Target: `hw1_task4`. Build passed.
 
 No compiler diagnostics.
 
 ## `newSim1/main.c`
 
-Builds — target `newSim1_main`
+Target: `newSim1_main`. Build passed.
 
 ```text
 exercises/newSim1/main.c: In function ‘elabora_prossima_richiesta’:
-exercises/newSim1/main.c:396:20: warning: unused variable ‘temp’ [-Wunused-variable]
-  396 |     NodoRichiesta *temp;
+exercises/newSim1/main.c:362:20: warning: unused variable ‘temp’ [-Wunused-variable]
+  362 |     NodoRichiesta *temp;
       |                    ^~~~
 exercises/newSim1/main.c: In function ‘ripristina_ultima_richiesta’:
-exercises/newSim1/main.c:502:20: warning: unused variable ‘temp’ [-Wunused-variable]
-  502 |     NodoElaborata *temp;
+exercises/newSim1/main.c:468:20: warning: unused variable ‘temp’ [-Wunused-variable]
+  468 |     NodoElaborata *temp;
       |                    ^~~~
 ```
 
 ## `project1/moltiplicazione_matrici.c`
 
-Builds — target `project1_moltiplicazione_matrici`
+Target: `project1_moltiplicazione_matrici`. Build passed.
 
 No compiler diagnostics.
 
 ## `sim1706.2/main.c`
 
-Builds — target `sim1706_2_main`
+Target: `sim1706_2_main`. Build passed.
 
 No compiler diagnostics.
 
 ## `sim24aug/simulazione_finale_adt_tutte_varianti.c`
 
-Builds — target `sim24aug_simulazione_finale_adt_tutte_varianti`
+Target: `sim24aug_simulazione_finale_adt_tutte_varianti`. Build passed.
 
 No compiler diagnostics.
 
 ## `sim24aug/simulazione_m2_basi_droni.c`
 
-Builds — target `sim24aug_simulazione_m2_basi_droni`
+Target: `sim24aug_simulazione_m2_basi_droni`. Build passed.
 
 No compiler diagnostics.
 
 ## `sim3/main.c`
 
-Builds — target `sim3_main`
+Target: `sim3_main`. Build passed.
 
 No compiler diagnostics.
 
 ## `sim4/main.c`
 
-Builds — target `sim4_main`
+Target: `sim4_main`. Build passed.
 
 No compiler diagnostics.
 

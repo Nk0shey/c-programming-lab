@@ -333,7 +333,7 @@ Corso *crea_vettore_corsi(
     if (*dimensione == 0) return NULL;
 
     Corso *vettore = malloc(sizeof(Corso) * (*dimensione));
-    if (!vettore) return NULL;
+    if (!vettore) { *dimensione = 0; return NULL; }
 
     nodo_corso = lista;
 
@@ -392,6 +392,7 @@ void ordina_corsi(
     Corso vettore[],
     int dimensione
 ) {
+    if (!vettore || dimensione <= 1) return;
     /* TODO */
     Corso temp;
     for (int i = 0; i < dimensione - 1; i++) {

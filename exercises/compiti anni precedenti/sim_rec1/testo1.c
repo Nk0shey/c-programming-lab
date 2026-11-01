@@ -346,6 +346,7 @@ int accoda_spedizione(coda_t *coda, spedizione_t spedizione) {
     }
 
     nodo_spedizione_t *nuovo = malloc(sizeof(nodo_spedizione_t));
+    if (!nuovo) return ERRORE_MEMORIA;
     nuovo->info = spedizione;
     nuovo->next = NULL;
 

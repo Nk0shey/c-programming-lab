@@ -435,33 +435,12 @@ while (a) { int cmp=strcmp(codice_cliente,a->cliente.codice_cliente);
  * puntatore all'albero di ricerca creato
  */
 Albero crea_albero_clienti(ListaRider* lista) {
-    //TODO: Da completare
-    Albero albero;
-    NodoRider* aux_rider = *lista;
-    NodoOrdine *aux_ordine;
-    cliente_t* cliente_assistente;
-    cliente_t nuovo_cliente;
-
-    while (aux_rider != NULL) {
-        aux_ordine = aux_rider->info.ordini.primo;
-        while (aux_ordine != NULL) {
-            cliente_assistente = cerca_cliente_ABR(albero, aux_rider->info.codice_rider);
-            if (cliente_assistente != NULL) {
-                cliente_assistente->numero_ordini++;
-                cliente_assistente->importo_totale += aux_ordine->info.importo;
-            } else {
-                strcpy(nuovo_cliente.codice_cliente, aux_ordine->info.codice_cliente);
-                nuovo_cliente.numero_ordini = 1;
-                nuovo_cliente.importo_totale = aux_ordine->info.importo;
-
-                albero = inserisci_nodo(albero, nuovo_cliente);
-            }
-            aux_ordine = aux_ordine->next;
-        }
-        aux_rider = aux_rider->next;
-    }
-
-    return albero;
+Albero a=NULL;
+    for (NodoRider *r=*lista; r; r=r->next) for (NodoOrdine *o=r->info.ordini.primo; o; o=o->next) {
+        cliente_t *c=cerca_cliente_ABR(a,o->info.codice_cliente);
+        if (c) { ++c->numero_ordini; c->importo_totale+=o->info.importo; }
+        else { cliente_t nuovo={0}; strcpy(nuovo.codice_cliente,o->info.codice_cliente); nuovo.numero_ordini=1; nuovo.importo_totale=o->info.importo; a=inserisci_nodo(a,nuovo); }
+    } return a;
 }
 
 

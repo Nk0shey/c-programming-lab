@@ -493,7 +493,7 @@ Richiesta *crea_vettore_richieste_lunghe(
     if (*num_richieste == 0) return NULL;
 
     Richiesta *nuovo = malloc(sizeof(Richiesta)*(*num_richieste));
-    if (nuovo == NULL) return NULL;
+    if (nuovo == NULL) { *num_richieste = 0; return NULL; }
 
     nodo_reparto = lista;
     int i = 0;
@@ -532,13 +532,14 @@ void ordina_per_tempo(
     Richiesta vettore[],
     int dimensione
 ) {
+    if (!vettore || dimensione <= 1) return;
     /* TODO: implementare */
     int i, j;
     Richiesta chiave;
     for (i = 1; i < dimensione; i++) {
         chiave = vettore[i];
         j = i - 1;
-        while (j >= 0 && (vettore[j].tempo < chiave.tempo || (vettore[j].tempo == chiave.tempo && vettore[j].tempo < chiave.tempo))) {
+        while (j >= 0 && (vettore[j].tempo < chiave.tempo || (vettore[j].tempo == chiave.tempo && vettore[j].priorita < chiave.priorita))) {
             vettore[j + 1] = vettore[j];
             j--;
         }
