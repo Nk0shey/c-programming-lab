@@ -1,69 +1,74 @@
 # C Programming Lab
 
-University practice in C by [Nikita Kozchenko](https://github.com/Nk0shey), a Computer Engineering student at the University of Catania.
+**56 C programs exploring data structures, algorithms and file-based simulations.**
 
-56 standalone programs exploring arrays, linked lists, stacks, queues, binary trees and file-based simulations. This repository documents academic practice and subsequent improvements. It is a learning collection, with varying test coverage across exercises.
+By [Nikita Kozchenko](https://github.com/Nk0shey) · Computer Engineering, University of Catania
 
-## Highlights
+C11 · CMake · CTest · Regression checks · Sanitizer support
 
-- Static, dynamic and linked stacks; sequential and linked queues.
-- Lists of queues, queues of stacks, stacks of lists and stacks of queues.
-- Simulations of delivery services, libraries, help desks, taxi fleets and warehouses.
-- Binary-search-tree construction, traversal, search and cleanup.
-- File input, filtering and dynamic statistics, including device energy-consumption periods.
-- Automated regression checks for the completed functions and corrected defects.
+[Build](#build-and-run) · [Examples](#examples) · [Tests](#tests) · [Review](docs/REVIEW.md)
 
-Italian identifiers and original folder names are retained so the work remains traceable to its course context. Documentation is in English.
+University practice with arrays, linked lists, stacks, queues, binary trees and combinations of those structures. The collection includes simulations of delivery services, libraries, help desks, taxi fleets, warehouses and irrigation systems. Original Italian identifiers and dated folders preserve the course context.
 
 ## Build and run
 
-Requires a C11 compiler (`cc`, `gcc` or `clang`) and CMake 3.16 or later. Python is not required to build or run the C programs.
-
-Build all exercises:
+Requires a C11 compiler (`cc`, GCC or Clang) and CMake 3.16+. Python is not required for the primary workflow.
 
 ```sh
 cmake -S . -B build
 cmake --build build --parallel 2
 ```
 
-Build and run one exercise:
+Build and run a single exercise:
 
 ```sh
 cmake --build build --target alberi_ricercaAlbero
 ./build/alberi_ricercaAlbero
 ```
 
-Expected output:
-
 ```text
 Elemento trovato: 57
 Altezza albero: 3
 ```
 
-You can also compile this standalone example directly without CMake:
+The standalone example can also be compiled directly:
 
 ```sh
 cc -std=c11 exercises/alberi/ricercaAlbero.c -o ricercaAlbero
 ./ricercaAlbero
 ```
 
-Exercises using separate implementation files must compile and link those files too; the CMake targets handle this automatically.
+Exercises with separate implementation files need those files linked too; the CMake targets handle this. On Windows with a multi-configuration generator, add `--config Debug`, use `build/Debug/<target>.exe`, and test with `ctest --test-dir build -C Debug`. Windows/macOS have not been verified during this review.
 
-All 56 programs were compiled individually on Linux. CMake configuration and the full build have been verified on Linux with GCC 13.3.0.
+## Where to start
+
+- `exercises/eser6magg/`, `exercises/eser8magg/`: stack and queue representations.
+- `exercises/alberi/`: tree construction, traversal and search.
+- `exercises/eser3giugno/`: tree-indexed telephone directory.
+- `exercises/es1/`, `exercises/eser9giugno/`: delivery simulations.
+- `exercises/es2/`, `exercises/eser5giugno/`: book loans and indexing.
+- `exercises/es3/`: ticket filtering with an array of queues.
+- `exercises/chat1/`, `exercises/sim24aug/`: nested structures and mixed simulations.
+- `exercises/class/`, `exercises/eser8apr/`, `exercises/eser27march/`, `exercises/esercitazione_01_04/`: recovered array, file-processing and recursion exercises.
+- `tests/`: small regression harnesses with isolated working directories.
+
+## Examples
+
+[The irrigation demo](examples/irrigation/README.md) provides complete input files and menu instructions. It explains a discrepancy between the assignment's written formula and its historical sample.
+
+[Recovered examples](examples/recovered/README.md) cover shipments, student bonuses, weather, book sorting, loan delays and exam results. The [import report](docs/SECOND_COMPUTER_IMPORT.md) records duplicate decisions and the grading rule preserved from the source.
+
+Many exercises read files relative to the current working directory and write output files there. Run them with the appropriate example data in a disposable working directory. Input formats are documented in the source or example instructions.
 
 ## Tests
 
-The primary test workflow uses CMake and CTest, with no Python dependency:
-
 ```sh
-cmake -S . -B build
-cmake --build build --parallel 2
 ctest --test-dir build --output-on-failure
 ```
 
-36 functional checks cover data-structure operations, cleanup, FIFO/LIFO ordering, filtering, sorting ties, invalid file input, closed-ticket statistics and exact matrix output. Another 56 entrypoint checks exercise empty, incomplete and malformed console input. An additional end-to-end suite runs all eight recovered programs with synthetic inputs and historical example data. In total, CTest runs 93 checks. Each regression test has an isolated working directory and keeps assertions enabled in Release builds.
+The suite has **93 checks**: 36 functional checks, 56 entrypoint-termination checks and one end-to-end suite for the recovered programs. Tests cover FIFO/LIFO ordering, cleanup, filtering, sorting ties, file errors, statistics and exact expected outputs. Assertions stay enabled in Release builds.
 
-Optional memory and undefined-behaviour checks with GCC or Clang:
+Optional GCC/Clang sanitizers:
 
 ```sh
 cmake -S . -B build-sanitize -DENABLE_SANITIZERS=ON
@@ -71,51 +76,12 @@ cmake --build build-sanitize --parallel 2
 ctest --test-dir build-sanitize --output-on-failure
 ```
 
-Where LeakSanitizer cannot inspect processes (as in the preparation environment), use `ASAN_OPTIONS=detect_leaks=0` before the CTest command. Address and undefined-behaviour checks remain enabled; this does not verify leak freedom.
+Where LeakSanitizer process inspection is unavailable, use `ASAN_OPTIONS=detect_leaks=0` before the CTest command. This keeps address/undefined-behavior checks but does not check leak freedom. The optional `python3 tests/run.py` runs the 36 functional checks; Python is required only for that alternative. Use `-DBUILD_TESTING=OFF` to build just the exercises.
 
-The optional `python3 tests/run.py` runner runs the 36 functional checks (the 56 entrypoint checks and end-to-end suite are registered with CTest). Python is needed only for that alternative runner. Use `-DBUILD_TESTING=OFF` to build exercises without the regression executables.
+## Verification and scope
 
-## Navigate
+The latest repository-wide review rebuilt all 56 programs and reran all 93 checks on Linux/GCC. The earlier correction/import pass also passed the sanitizer configuration. The empty historical `hw1/task5.c` is not a runnable target. Passing tests does not establish correctness of every historical exercise or every menu path.
 
-- `exercises/class/`, `exercises/eser8apr/`, `exercises/eser27march/`, `exercises/esercitazione_01_04/`: recovered array, file-processing and recursion exercises.
-- `exercises/hw1/`: array operations and search.
-- `exercises/eser17apr/`: linked lists and library records.
-- `exercises/eser6magg/`, `exercises/eser8magg/`: stack and queue representations.
-- `exercises/alberi/`: binary-tree practice.
-- `exercises/eser3giugno/`: telephone directory grouped in a search tree.
-- `exercises/es1/`, `exercises/eser9giugno/`: delivery simulations.
-- `exercises/es2/`, `exercises/eser5giugno/`: book loans and indexing.
-- `exercises/es3/`: ticket filtering with an array of queues.
-- `exercises/chat1/`: mixed ADT, parcel-centre, postal, scooter and device-log exercises.
-- `exercises/sim24aug/`: nested ADT variants and drone-base simulation.
-- Other dated and simulation folders: additional academic practice.
-- `tests/`: regression harnesses.
-- `docs/`: compilation audit, changes and verification limits.
+Small console exercises stop on malformed/incomplete input through `common/console.h`; they do not all recover an interactive session. The irrigation menu validates full lines and retries. Entry-point checks verify termination, while business-rule coverage varies by exercise.
 
-## Input files and scope
-
-Many programs expect text input files in their current working directory. Original datasets were not included outside IDE-generated build folders in the first upload. Example inputs recovered from the second archive are now available in [examples/recovered](examples/recovered/README.md). Source comments describe the exercise-specific formats; regression tests create synthetic data for their own checks. Run file-based programs in a temporary directory because some write output files.
-
-All 56 programs compile and link on the verified Linux toolchain. Passing compilation, 36 functional checks, 56 entrypoint checks and the end-to-end suite does not establish correctness of every exercise or interactive path. See the [repository audit](docs/AUDIT.md), [review notes](docs/REVIEW_NOTES.md) and the [build audit](docs/BUILD_AUDIT.md).
-
-## Provenance
-
-The original archive included exercise prompts, starter code and student implementations. Individual authorship of supplied teaching scaffolds has not been established. The correction pass completed identified empty function stubs, repaired identified defects, added regression tests and prepared build/documentation files. See [changes](docs/CHANGES.md). The original upload remains separate; this repository contains the revised working versions.
-
-No blanket open-source license has been assigned to teaching material whose ownership has not been confirmed.
-
-On Windows with a multi-configuration generator, build with `--config Debug`, test with `ctest --test-dir build -C Debug`, and use `build/Debug/<target>.exe`. Windows and macOS have not been verified in this review.
-
-## Irrigation demo
-
-A complete example with input files and menu instructions is provided in [examples/irrigation](examples/irrigation/README.md). The implementation follows the written exercise formula; the discrepancy with the historical sample is explained there.
-
-## Console input
-
-Small console exercises use `common/console.h` to stop with a diagnostic and exit status 1 on an incomplete or malformed scan, rather than continue with uninitialized values. String scans have finite widths and line draining handles EOF. This fail-fast path exits the process; it does not recover the interactive session. The irrigation menu instead validates full lines and prompts again.
-
-The entrypoint tests check termination, not each application's business rules. File parsers and application-specific valid-input scenarios have separate, varying test coverage.
-
-## Second-computer exercises
-
-Eight distinct exercises were recovered and corrected from a second archive; earlier copies of existing projects, one repeated exercise and an empty file were skipped. See the [import report](docs/SECOND_COMPUTER_IMPORT.md) for the per-file decisions, corrections, test scope and preserved grading assumptions. [Runnable examples](examples/recovered/README.md) include the recovered file inputs.
+See [current review](docs/REVIEW.md), [historical audit](docs/AUDIT.md) and [changes](docs/CHANGES.md) for the exact scope. Original prompts and teaching scaffolds may have separate authorship; no blanket license has been assigned.
